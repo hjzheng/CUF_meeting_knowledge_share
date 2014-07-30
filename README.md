@@ -6,7 +6,7 @@ CUF_meeting_knowledge_share
 
 
 ##### 记录方式:
-通过New issue方式记录
+通过New issue方式记录, issue name为日期 + 主题，例如2014-7-29: CSS Sprite
 
 
 ##### CUF团队成员:
