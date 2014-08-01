@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>使用border制作三角形</title>
+    <style>
+        .all {
+            width: 0;
+            height: 0;
+            border-left: 100px solid #333;
+            border-top: 100px solid #000;
+            border-right: 100px solid #ddd;
+            border-bottom: 100px solid #777;
+        }
+
+        .left {
+            width: 0;
+            height: 0;
+            border: 100px solid #333;
+            border-color: transparent transparent transparent #333;
+        }
+
+        .right {
+            width: 0;
+            height: 0;
+            border: 100px solid #333;
+            border-color: transparent #000 transparent transparent;
+        }
+
+        .top {
+            width: 0;
+            height: 0;
+            border: 100px solid #333;
+            border-color: #ddd transparent transparent transparent;
+        }
+
+        .bottom {
+            width: 0;
+            height: 0;
+            border: 100px solid #333;
+            border-color: transparent transparent #777 transparent;
+        }
+
+        .transform {
+            margin: 40px 40px;
+            width: 0;
+            height: 0;
+            border: 100px solid #333;
+            border-color: transparent transparent transparent #333;
+            transform-origin: 25% 50%;
+            transition: 1s;
+        }
+
+        .transform:hover {
+            transform: rotate(90deg);
+        }
+
+        .all1 {
+            width: 0;
+            height: 0;
+            border-left: 100px solid #333;
+            border-top: 100px solid #000;
+            border-right: 100px solid #ddd;
+        }
+
+        .all2 {
+            width: 0;
+            height: 0;
+            border-left: 100px solid #333;
+            border-top: 100px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>使用border制作三角形</h1>
+    <h2>无宽高,四边框都存在</h2>
+    <div class="all"></div>
+    <h2>无宽高,四边框都存在,保留左边框颜色</h2>
+    <div class="left"></div>
+    <h2>无宽高,四边框都存在,保留右边框颜色</h2>
+    <div class="right"></div>
+    <h2>无宽高,四边框都存在,保留上边框颜色</h2>
+    <div class="top"></div>
+    <h2>无宽高,四边框都存在,保留下边框颜色</h2>
+    <div class="bottom"></div>
+    <h2>使用CSS3旋转,hover me</h2>
+    <div class="transform"></div>
+    <h2>无宽高,三边框都存在</h2>
+    <div class="all1"></div>
+    <h2>无宽高,二边框都存在</h2>
+    <div class="all2"></div>
+</body>
+</html>

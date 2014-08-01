@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IconFont</title>
+    <link rel="stylesheet" href="css/example1.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+</head>
+<body>
+<div class="main">
+    <h1>IconFont 图标(例子来自http://iconfont.cn/)</h1>
+    <ul class="icon_lists clear">
+
+        <li>
+            <i class="icon iconfont">&#x3438;</i>
+            <div class="name">双鱼座</div>
+            <div class="code">&amp;#x3438;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3439;</i>
+            <div class="name">摩羯座</div>
+            <div class="code">&amp;#x3439;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343a;</i>
+            <div class="name">处女座</div>
+            <div class="code">&amp;#x343a;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343b;</i>
+            <div class="name">狮子座</div>
+            <div class="code">&amp;#x343b;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343c;</i>
+            <div class="name">巨蟹座</div>
+            <div class="code">&amp;#x343c;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343d;</i>
+            <div class="name">天蝎座</div>
+            <div class="code">&amp;#x343d;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343e;</i>
+            <div class="name">射手座</div>
+            <div class="code">&amp;#x343e;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3432;</i>
+            <div class="name">收藏夹</div>
+            <div class="code">&amp;#x3432;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3437;</i>
+            <div class="name">水瓶座</div>
+            <div class="code">&amp;#x3437;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x343f;</i>
+            <div class="name">天秤座</div>
+            <div class="code">&amp;#x343f;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3440;</i>
+            <div class="name">双子座</div>
+            <div class="code">&amp;#x3440;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3441;</i>
+            <div class="name">金牛座</div>
+            <div class="code">&amp;#x3441;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x3442;</i>
+            <div class="name">牡羊座</div>
+            <div class="code">&amp;#x3442;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x344b;</i>
+            <div class="name">专辑</div>
+            <div class="code">&amp;#x344b;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x344c;</i>
+            <div class="name">瀑布流</div>
+            <div class="code">&amp;#x344c;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x344d;</i>
+            <div class="name">全部</div>
+            <div class="code">&amp;#x344d;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x344e;</i>
+            <div class="name">文章</div>
+            <div class="code">&amp;#x344e;</div>
+        </li>
+
+        <li>
+            <i class="icon iconfont">&#x344f;</i>
+            <div class="name">图片</div>
+            <div class="code">&amp;#x344f;</div>
+        </li>
+
+    </ul>
+
+
+    <div class="helps">
+        第一步：使用font-face声明字体
+            <pre>
+@font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#uxiconfont') format('svg'); /* iOS 4.1- */
+}
+</pre>
+        第二步：定义使用iconfont的样式
+            <pre>
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+</pre>
+        第三步：挑选相应图标并获取字体编码，应用于页面
+<pre>
+&lt;i class="iconfont"&gt;&amp;#x33&lt;/i&gt;
+</pre>
+    </div>
+
+</div>
+</body>
+</html>
