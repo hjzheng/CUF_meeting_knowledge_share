@@ -11,7 +11,7 @@ CUF_meeting_knowledge_share
 项目中对应的日期文件夹，可以放置Example，文档或其他你想放置的东西。
 
 ##### CUF团队成员:
-- Chun Lin Yang
+- [Chun Lin Yang][4]
 - [Zhen Ou Yun][2]
 - [Hao Ju Zheng][3]
 
@@ -19,3 +19,4 @@ CUF_meeting_knowledge_share
 [1]:https://stackedit.io/
 [2]:https://github.com/zoyun
 [3]:https://github.com/hjzheng
+[4]:https://github.com/clyang82
