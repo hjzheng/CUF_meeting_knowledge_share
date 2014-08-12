@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        li {
+            width: 100px;
+            margin: 2px;
+        }
+
+        li[class] {
+            background: red;
+        }
+
+        li[class=item1] {
+            background: yellow;
+        }
+
+        li[class^=last] {
+            background: pink;
+        }
+
+        li[class$='8'] {
+            background: gray;
+        }
+
+        li[class|=item] {
+            background: greenyellow;
+        }
+
+        li[class~=ten] {
+            background: blueviolet;
+        }
+
+        li[class*=em5] {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="item1">item 1</li>
+        <li class="item2">item 2</li>
+        <li class="item3">item 3</li>
+        <li class="item4">item 4</li>
+        <li class="item5">item 5</li>
+        <li class="item6">item 6</li>
+        <li class="last_item">item 7</li>
+        <li class="item8">item 8</li>
+        <li class="item-nine">item 9</li>
+        <li class="item ten">item 10</li>
+    </ul>
+</body>
+</html>

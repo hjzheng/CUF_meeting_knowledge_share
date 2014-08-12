@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>层次选择器</title>
+    <style>
+        .ul1 > li {
+            border: 1px solid pink;
+        }
+        .ul2 li {
+            border: 1px solid blueviolet;
+        }
+
+        .firstLi + li{
+            border: 1px solid blueviolet;
+        }
+
+        .centerLi ~ li{
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+<body>
+    <ul class="ul1">
+        <li>item_1</li>
+        <li>item_2</li>
+        <li>
+            <ul>
+                <li>item_3_1</li>
+                <li>item_3_2</li>
+                <li>item_3_3</li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="ul2">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>
+            <ul>
+                <li>item_3_1</li>
+                <li>item_3_2</li>
+                <li>item_3_3</li>
+            </ul>
+        </li>
+    </ul>
+
+
+    <ul>
+        <li class="firstLi">item__1</li>
+        <li>item__2</li>
+        <li>item__3</li>
+    </ul>
+
+    <ul>
+        <li>item__1</li>
+        <li>item__2</li>
+        <li class="centerLi">item__3</li>
+        <li>item__4</li>
+        <li>item__5</li>
+    </ul>
+
+</body>
+</html>

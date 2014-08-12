@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>伪类选择器-动态伪类</title>
+    <style>
+        * {
+          margin: 0px;
+          padding: 0px;
+        }
+
+        ul,li {
+           list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clear {
+            zoom: 1;
+        }
+
+        .clear:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        ul {
+            background: gray;
+            padding: 0px 20px;
+        }
+
+        ul > li.item {
+            float: left;
+        }
+
+        ul > li.item > a {
+            font-size: 24px;
+            line-height: 36px;
+            padding: 0px 10px;
+            display: inline;
+            color: #eee;
+            cursor: pointer;
+        }
+
+
+        ul > li.item:hover > a {
+            background: #eee;
+            color: #333;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <ul class="clear">
+        <li class="item"><a href="#">item1</a></li>
+        <li class="item"><a href="#">item2</a></li>
+        <li class="item"><a href="#">item3</a></li>
+        <li class="item"><a href="#">item4</a></li>
+        <li class="item"><a href="#">item5</a></li>
+    </ul>
+</body>
+</html>

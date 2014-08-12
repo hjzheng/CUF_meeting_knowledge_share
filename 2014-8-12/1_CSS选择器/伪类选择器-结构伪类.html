@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>伪类选择器-结构伪类</title>
+    <style>
+        ul {
+            background: #eee;
+            margin: 10px;
+        }
+
+        .ul1 li:nth-child(2n) {
+            border: 1px solid red;
+        }
+
+        .ul2 li:first-child {
+            border: 1px solid red;
+        }
+
+        .ul3 li:last-child {
+            border: 1px solid red;
+        }
+
+        .ul4 li:nth-of-type(2) {
+            border: 1px solid red;
+        }
+
+        .ul5 p:first-of-type {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<ul class="ul1">
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+</ul>
+
+<ul class="ul2">
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+</ul>
+
+<ul class="ul3">
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+</ul>
+
+<ul class="ul4">
+    <li>li_1</li>
+    <p>P_1</p>
+    <li>li_2</li>
+    <p>P_2</p>
+    <li>li_3</li>
+    <p>P_3</p>
+    <li>li_4</li>
+    <p>P_4</p>
+    <li>li_5</li>
+    <p>P_5</p>
+</ul>
+<ul class="ul5">
+    <li>li_1</li>
+    <p>P_1</p>
+    <li>li_2</li>
+    <p>P_2</p>
+    <li>li_3</li>
+    <p>P_3</p>
+    <li>li_4</li>
+    <p>P_4</p>
+    <li>li_5</li>
+    <p>P_5</p>
+</ul>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>伪元素选择器</title>
+    <style>
+        ul>li:before {
+            content: "item_";
+            color: red;
+        }
+
+        ul>li:after {
+            content: "00";
+            color: pink;
+        }
+
+        .section1:first-letter {
+            color: yellowgreen;
+            font-size: 30px;
+        }
+
+        .section2:first-line {
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+        <li>005</li>
+    </ul>
+    <p class="section1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+        sed diam nonummy nibh euismod tincidunt ut consectetuer
+        adipiscing elit, sed diam nonummy nibh euismod tincidunt
+        ut laoreet dolore magna aliquam erat volutpat.</p>
+    <p class="section2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+        sed diam nonummy nibh euismod tincidunt ut consectetuer
+        adipiscing elit, sed diam nonummy nibh euismod tincidunt
+        ut laoreet dolore magna aliquam erat volutpat.</p>
+</body>
+</html>

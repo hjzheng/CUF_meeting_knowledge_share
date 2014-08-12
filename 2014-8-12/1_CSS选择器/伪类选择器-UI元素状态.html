@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>伪类选择器-UI元素状态</title>
+    <style>
+        input:checked {
+            width: 30px;
+            height: 30px;
+            transition: 1s;
+        }
+
+        input:disabled {
+            width: 100px;
+            height: 10px;
+            color: red;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <form action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi">
+
+        <div><input name="hidden field" value="42" type="hidden"></div>
+        <div><label for="f1">Single-line text input field: <input id="f1" name="text" size="20" value="Default text." disabled></label></div>
+        <div><label for="f2">Multi-line text input field (textarea):</label></div>
+        <div><textarea id="f2" name="textarea" rows="16" cols="20">Default text.</textarea></div>
+
+        <p>The following two radio buttons are inside <code>fieldset</code> element with a <code>legend</code>:</p>
+
+
+        <fieldset>
+            <legend>Legend</legend>
+            <div>
+                <label for="f3">Radio button 1</label>
+                <input id="f3" name="radio" value="1" type="radio">
+            </div>
+            <div>
+                <label for="f4">Radio button 2 (initially checked)</label>
+
+                <input id="f4" name="radio" value="2" checked="checked" type="radio">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Check those that apply</legend>
+            <div>
+                <label for="f5">Checkbox 1</label>
+
+                <input id="f5" name="checkbox" type="checkbox">
+            </div>
+            <div>
+                <label for="f6">Checkbox 2 (initially checked)</label>
+                <input id="f6" name="checkbox2" checked="checked" type="checkbox">
+            </div>
+        </fieldset>
+
+        <p>
+
+            <label for="f10">A <code>select</code> element with <code>size="1"</code> (dropdown box):</label>
+        </p>
+
+        <select id="f10" name="select1" size="1">
+            <option>one</option>
+
+            <option selected="selected">two (default)</option>
+            <option>three</option>
+        </select>
+
+        <p>
+            <label for="f11">A <code>select</code> element with <code>size="3"</code> (listbox):</label>
+
+        </p>
+
+        <select id="f11" name="select2" size="3">
+            <option>one</option>
+            <option selected="selected">two (default)</option>
+            <option>three</option>
+        </select>
+
+        <div>
+            <label for="f99">Submit button:</label>
+            <input id="f99" name="submit" value="Just a test" type="submit">
+        </div>
+        <div>
+            <label for="f0">Reset button:</label>
+            <input id="f0" name="reset" value="Reset" type="reset">
+        </div>
+    </form>
+</body>
+</html>
