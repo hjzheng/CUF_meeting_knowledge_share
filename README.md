@@ -8,7 +8,7 @@ CUF_meeting_knowledge_share
 ##### 记录方式:
 通过New issue方式记录, issue name为日期 + 主题，例如2014-7-29: CSS Sprite ，
 由于issue是通过[markdown][0]方式书写，如果对markdown不熟悉的同学，可以使用[stackedit.io][1]在线编辑再粘贴。
-项目中对应的日期文件夹，可以放置Example，文档或其他你想放置的东西。
+项目中对应的日期文件夹，可以放置Example，文档或其他你想放置的东西。(更多[markdown资源][5])
 
 ##### CUF团队成员:
 - [Chun Lin Yang][4]
@@ -20,3 +20,4 @@ CUF_meeting_knowledge_share
 [2]:https://github.com/zoyun
 [3]:https://github.com/hjzheng
 [4]:https://github.com/clyang82
+[5]:http://jianshu.io/collection/BDu5F8
