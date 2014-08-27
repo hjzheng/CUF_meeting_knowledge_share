@@ -1,0 +1,32 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浏览器渲染测试1</title>
+    <style>
+        .active {
+            background: red;
+            width:200px;
+            height:200px;
+        }
+    </style>
+</head>
+<body> 
+    <p>5秒之后div高度自动变大</p> 
+    <div id="div" class="active">This is a div</div>
+    <script>
+         var button = document.getElementById("test");
+         var div = document.getElementById("div");
+         setTimeout(function(){
+            var i = 10;
+            var interval = setInterval(function(){
+                div.style.height = (200 + i) + "px";
+                i = i + 10;
+                if(i > 50) {
+                   clearInterval(interval);
+                } 
+            }, 2000);            
+         }, 5000);
+    </script>
+</body>
+</html>

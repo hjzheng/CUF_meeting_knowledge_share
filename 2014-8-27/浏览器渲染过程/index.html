@@ -1,0 +1,234 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>浏览器的渲染过程</title>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>浏览器的渲染过程</h2>
+					<div>By Haoju</div>
+				</section>
+
+				<section>
+                    <section>
+                        <h2>渲染引擎</h2>
+					    <p class="fragment">浏览器的渲染是通过其渲染引擎实现的</p>
+                    </section>
+                    <section>
+                        <h2>什么是渲染引擎 ？</h2>
+                        <p class="fragment">
+                            渲染引擎是一种对HTML文档进行解析并将其显示在页面上的工具，在浏览器中担任重要任务。
+                        </p>
+                    </section>
+                    <section>
+                        <h2>浏览器不同,渲染引擎不同</h2>
+                        <img src="img/browsers.jpg">
+                        <ul class="fragment">
+                            <li>Chrome、Safari、Opera浏览器中使用WebKit引擎</li>
+                            <li>Firefox浏览器中使用Gecko引擎</li>
+                            <li>IE浏览器中使用Trident引擎</li>
+                        </ul>
+                    </section>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+						<h2>浏览器渲染主流程</h2>
+                        <img src="img/flow.png" style="height:100px;">
+                        <ol class="fragment">
+                            <li>渲染引擎解析HTML文档，构建DOM树。</li>
+                            <li>根据DOM树与CSS样式信息构建渲染树。</li>
+                            <li>布局过程，根据渲染树中的位置信息在屏幕中布局元素。</li>
+                            <li>绘制过程，将渲染树中的可视化信息绘制在屏幕中。</li>
+                        </ol>
+					</section>
+					<section>
+						<h2>渐进式的渲染过程</h2>
+						<p>整个渲染是一个渐进的过程。为达到更好的用户体验，渲染引擎会力求尽快将内容显示在屏幕上。它不必等到整个 HTML 文档解析完毕之后，就会开始构建呈现树和设置布局。在不断接收和处理来自网络的其余内容的同时，呈现引擎会将部分内容解析并显示出来。</p>
+                        <p class="fragment">这也就是我们为什么将CSS文件在html头中引入的原因。</p>
+					</section>
+                    <section>
+                        <h2>layout和paint的区别</h2>
+                        <p class="fragment">
+                            <b style="color: #eee">Layout</b> -- 当窗口尺寸被修改（resize)，发生滚动操作，或position、display、width、height等与元素位置相关的样式属性值被更新时触发布局过程。在布局过程中由于要计算所有元素的位置信息，更加会降低页面加载性能。在WebKit引擎中把布局过程称为Layout过程，在Gecko引擎中把绘制过程称为Reflow过程。
+                        </p>
+                        <p class="fragment">
+                            <b style="color: #eee">Paint</b> -- 当color、background-color、visiblity、outline等与视觉相关的样式属性值被更新时触发绘制过程。在绘制过程中由于要重计算元素的视觉信息，所以会降低页面加载性能。在WebKit引擎中把绘制过程称为Painting过程，在Gecko引擎中把绘制过程称为Repaint过程。
+                        </p>
+                    </section>
+                    <section>
+                        <h2>触发layout和paint的原因</h2>
+                        <ul>
+                            <li>元素的追加、修改与删除</li>
+                            <li>动画</li>
+                            <li>样式修改</li>
+                            <li>元素的class属性值修改</li>
+                            <li> hover伪类选择器所触发的元素状态改变</li>
+                            <li>由用户在input元素中的输入而引起的文字节点改变</li>
+                            <li>使用offsetWidth、offsetHeight或getComputedStyle取得样式属性值</li>
+                            <li>文字字体的改变</li>
+                            <li>窗口尺寸的改变(resize)</li>
+                            <li>元素透明度的改变</li>
+                            <li>页面或元素内的滚动</li>
+                        </ul>
+                    </section>
+				</section>
+
+                <section>
+                    <section>
+                        <h2>如何减少layout和paint</h2>
+                    </section>
+
+                    <section>
+                        <h2>JavaScript</h2>
+                        <ul>
+                            <li>通过DocumentFragment减少DOM操作时引起的布局次数</li>
+                            <li>通过复制减少DOM操作时引起的布局次数</li>
+                            <li>使用class汇总多个样式修改</li>
+                            <li>设置动画帧率在60FPS以内</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>css</h2>
+                        <ul>
+                            <li>使用position:fixed固定布局对性能产生负面影响</li>
+                            <li>对执行动画的元素使用position:absolute可以缩小布局范围</li>
+                            <li>overflow:scroll所引起的滚动将对页面性能产生较大影响</li>
+                            <li>使用布局过程或绘制过程消耗较多资源成本的样式属性 </li>
+                        </ul>
+                        <pre><code data-trim contenteditable style="font-size: 24px; margin-top: 10px;">
+                @font-face, animation, transition,
+                box-shadow, border-radius, gradient,
+                opacity, background-size, text-align
+                        </code></pre>
+                    </section>
+                </section>
+
+				<section>
+                    <section>
+					    <h2>如何监测layout和paint</h2>
+					    <p>使用chrome dev tools的timeline panel监测layout和paint，从而有针对性的优化页面</p>
+                        <p>在使用dev tools之前,先了解一下webkit渲染细节</p>
+				    </section>
+                    <section>
+                        <h2>webkit渲染细节</h2>
+                        <p>Dom Tree -> Render Object Tree -> Render Layer Tree</p>
+                        <img src="img/webkit-render.png" style="height: 480px;">
+                    </section>
+                    <section>
+                        <h2>Dom Tree -> Render Object Tree</h2>
+                        <p>当一个可见的 DOM 节点被添加到 DOM 树上时，内核就会为它生成对应的 RenderOject 添加到 Render 树上。</p>
+                        <img src="img/dom-tree2render-object.png">
+                    </section>
+                    <section>
+                        <h2>Render Object -> Render Layer Tree</h2>
+                        <p>渲染引擎会为一些特定的 RenderObject 生成对应的 RenderLayer，而这些特定的 RenderObject 跟对应的 RenderLayer 就是直属的关系，相应的，它们的子节点如果没有对应的 RenderLayer，就从属于父节点的 RenderLayer.</p>
+                        <img src="img/render-object2layer.png" style="height: 350px;">
+                    </section>
+                    <section>
+                        <h2>Webkit渲染总结</h2>
+                        <p>浏览器渲染引擎遍历 Layer 树，访问每一个 RenderLayer，再遍历从属于这个 RenderLayer 的 RenderObject，将每一个 RenderObject 绘制出来。可以认为，Layer 树决定了网页绘制的层次顺序，而从属于 RenderLayer 的 RenderObject 决定了这个 Layer 的内容，所有的 RenderLayer 和 RenderObject 一起就决定了网页在屏幕上最终呈现出来的内容。</p>
+                    </section>
+                    <section>
+                        <h2>使用dev tools之前的一些术语</h2>
+                        <ul>
+                            <li>Recalculate Style</li>
+                            <li>Layout(前面已经提过)</li>
+                            <li>Paint(前面已经提过)</li>
+                            <li>Composite</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Recalculate Style</h2>
+                        <img src="img/recalculate-style.png" style="height: 500px;">
+                        <div><a href="http://aerotwist.com/blog/pixels-are-expensive/">更多内容</a></div>
+                    </section>
+                    <section>
+                        <h2>Composite</h2>
+                        <img src="img/composite.png" style="height: 500px;">
+                        <div><a href="http://aerotwist.com/blog/pixels-are-expensive/">更多内容</a></div>
+                    </section>
+                    <section>
+                        <h2>使用dev tools</h2>
+                        <img src="img/devtools.png" style="height: 500px;">
+                    </section>
+                    <section>
+                        <h2>Example1</h2>
+                        <a href="example/example1.html">Example1.html</a>
+                        <img src="img/example1.png" style="height: 500px;">
+                    </section>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### 扩展阅读
+                        - [CSS Triger][4]
+                        - [Pixels are expensive][5]
+                        - [the runtime performance checklist][6]
+                        - [浏览器是如何工作的?][1]
+                        - [使用dev tools timeline panel][3]
+
+                        [1]:http://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/
+                        [2]:http://www.kazaff.me/2014/01/18/%E4%BA%86%E8%A7%A3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B%E8%BD%AC/
+                        [3]:http://www.kazaff.me/2014/01/18/chrome-developer-tools%E4%B9%8Btimeline%E9%9D%A2%E6%9D%BF/
+                        [4]:http://csstriggers.com/
+                        [5]:http://aerotwist.com/blog/pixels-are-expensive/
+                        [6]:http://calendar.perfplanet.com/2013/the-runtime-performance-checklist/
+                        [7]:http://www.slideshare.net/matenadasdi1/google-chrome-developer-tools-16917759
+                        [8]:http://blog.csdn.net/jaylinzhou/article/details/8579218
+                        [9]:http://tech.uc.cn/?p=2763
+                    </script>
+                </section>
+
+                <section>
+                    <h2>谢谢观赏</h2>
+                    <p>2014-8-21</p>
+                </section>
+
+			</div>
+
+		</div>
+        <script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }
+                ]
+			});
+
+		</script>
+
+	</body>
+</html>
