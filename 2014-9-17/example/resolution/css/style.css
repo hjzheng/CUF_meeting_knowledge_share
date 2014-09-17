@@ -1,0 +1,18 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+/*
+resolution 设备像素密度 可以使用dpi也可以使用dppx
+由于webkit内核浏览器对resolution支持的不好，所以使用-webkit-device-pixel-ratio(设备像素比率)
+*/
+@media screen and ( resolution: 1dppx ), screen and ( -webkit-device-pixel-ratio: 1 ) {
+  body{
+    background: #c0392b;
+  }
+}

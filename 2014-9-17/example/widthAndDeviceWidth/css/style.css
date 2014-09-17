@@ -1,0 +1,40 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+
+/*
+设备的宽度
+/*
+@media ( max-device-width: 767px ){
+  body{
+    background: #c36cea;
+  }
+}
+
+@media ( max-device-width: 467px ){
+    body{
+        background: #cc1eef;
+    }
+}
+*/
+/*可视窗口宽度
+max 表示小于等于
+min 表示大于等于
+*/
+@media ( max-width: 767px ){
+    body{
+        background: #c36cea;
+    }
+}
+
+@media ( max-width: 467px ){
+    body{
+        background: #cc1eef;
+    }
+}

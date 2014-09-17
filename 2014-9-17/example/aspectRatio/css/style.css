@@ -1,0 +1,16 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+
+/*可视窗口的宽高比，与设备方向有关*/
+@media( aspect-ratio: 3/2 ){
+  body{
+    background: #0381bb;
+  }
+}

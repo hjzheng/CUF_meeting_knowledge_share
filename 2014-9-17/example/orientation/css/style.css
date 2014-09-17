@@ -1,0 +1,25 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+/*
+设备方向
+landscape 表示水平
+portrait 表示垂直
+*/
+@media ( orientation: landscape ){
+  body{
+    background: #27ae60;
+  }
+}
+
+@media ( orientation: portrait ){
+  body{
+    background: #f2cb2b;
+  }
+}

@@ -1,0 +1,16 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+
+/*用于连接媒体特性和媒体特性表达式*/
+@media screen and ( min-width: 480px ) and ( max-width: 767px ){
+  body{
+    background: #27ae60;
+  }
+}

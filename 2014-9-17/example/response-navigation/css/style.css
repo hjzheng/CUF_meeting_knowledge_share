@@ -1,0 +1,231 @@
+body{
+  margin-top:35px;
+  text-align:center;
+  margin:0;
+  padding:0;
+}
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+h3, p{
+  padding:20px;
+}
+
+.container{
+  width:960px;
+  margin:0 auto;
+}
+
+#header, #nav, #footer, #mainbody, #sidebar{
+
+  line-height:25px;
+  background:#eee;
+  margin-bottom:20px;
+  padding-bottom:20px;
+  color:#999;
+}
+
+#mainbody, #sidebar{
+  height:300px;
+  float:left;
+  margin-bottom:35px;
+}
+
+#mainbody {
+  width:620px;
+  /*background:#ddefcb;*/
+  margin-right:20px;
+}
+
+#sidebar{
+  width:320px;
+  /*background:#ffcbdd;*/
+}
+
+#footer{
+  clear:both;
+}
+
+#footer h5{
+  padding-top:20px;
+}
+
+#footer {
+  background:none;
+  border-top:1px solid #eee;
+}
+#header{
+  background:none;
+  border-bottom:1px solid #eee;
+}
+#header h1{
+  font-size:2.5em;
+  margin-top:50px;
+  color:#3c3c3c;
+}
+
+#header h2{
+  font-size:1em;
+  color:#ccc;
+}
+
+/* 导航菜单 */
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+#nav li, #nav li a{
+  display: inline-block;
+  padding: 7px 15px;
+  text-decoration: none;
+  color: #3b3b3b;
+}
+
+#nav li a:hover{
+  background: #eee;
+}
+
+#nav{
+  background: none;
+}
+
+#nav .active{
+  background: #eee;
+}
+
+.toggle-btn{
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Media Queries */
+
+@media (min-width:1200px){
+  .container{
+    width:1170px;
+  }
+  #mainbody{
+    width:770px;
+    margin-right:30px;
+  }
+  #sidebar{
+    width:370px;
+  }
+}
+
+@media (max-width:959px){
+  .container{
+    width:100%;
+  }
+  #mainbody{
+    width:67%;
+  }
+  #sidebar{
+    width:30%;
+    float:right;
+  }
+}
+
+@media (max-width: 767px){
+  #mainbody, #sidebar{
+    width:100%;
+    float:none;
+  }
+  #header{
+    font-size:12px;
+    text-align:left;
+    padding-left:20px;
+  }
+  
+  /* 切换按钮 */
+  .toggle-btn{
+    display: inline-block;
+    font-size: 25px;
+    text-decoration: none;
+    background: #000;
+    color: #fff;
+    padding: 7px 10px;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+  }
+  
+  /* 隐藏关闭按钮 */
+  #nav .close{
+    display: none;
+  }
+  
+  /* 导航为目标状态的时候显示关闭按钮 */
+  #nav:target .close{
+    display: inline-block;
+  }
+  
+  /* 初始隐藏导航 */
+  #nav{
+    display: none;
+  }
+  
+  /* 导航为目标状态时的样式 */
+  #nav:target{
+    display: block;
+    position: absolute;
+    top: 0;
+    padding-top: 70px;
+    width: 100%;
+  }
+  /* 目标状态下的导航的 ul 标签 */
+  #nav:target ul{
+    background: #000;
+  }
+  /* 目标状态下的导航的 li 与 a */
+  #nav:target li, #nav:target li a{
+    display: block;
+    color: #eee;
+    text-align: left;
+  }
+  /* 目标状态下的导航的列表下的 a 标签的悬停样式 */
+  #nav:target li a:hover{
+    background: #3b3b3b;
+  }
+  /* 目标状态下导航的激活状态的样式 */
+  #nav:target .active{
+    background: #272727;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

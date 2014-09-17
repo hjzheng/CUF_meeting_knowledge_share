@@ -1,0 +1,23 @@
+body{
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h2{
+  color: #eee;
+}
+
+/*设备的宽高比，与设备方向无关*/
+
+@media( device-aspect-ratio: 2/3 ){
+  body{
+    background: #0381bb;
+  }
+}
+
+@media( aspect-ratio: 1/2 ){
+    body{
+        background: #dd5964;
+    }
+}
