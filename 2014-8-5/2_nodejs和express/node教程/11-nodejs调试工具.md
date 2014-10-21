@@ -11,7 +11,7 @@ nodejs调试工具
   debugger listening on port 5858
 
   ###node-inspector打开chrome连接端口###
-  [root@hjzheng markdown-reader]# node-inspector --web-port=8899 app.js 
+  [root@hjzheng markdown-reader]# node-inspector --web-port=8899 
   Node Inspector v0.7.4
   Visit http://127.0.0.1:8899/debug?port=5858 to start debugging.
 
