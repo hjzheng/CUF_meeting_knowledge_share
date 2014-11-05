@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SVG 引入方式</title>
+</head>
+<body>
+    <!--图片方式-->
+    <img src="file.svg">
+    <!--iframe方式-->
+    <iframe src="file.svg"></iframe>
+    <!--样式背景方式-->
+    <div style="width:100px;height:100px;background:url(./file.svg)"></div>
+    <!-- 直接引入到html中 -->
+    <svg width="100%" height="100%" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="50" r="40" stroke="black"
+            stroke-width="2" fill="red"/>
+    </svg>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SVG动画</title>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect x="10" y="10" height="110" width="110"
+              style="stroke:#ff0000; fill: #0000ff">
+
+            <animateTransform
+                    attributeName="transform"
+                    begin="0s"
+                    dur="20s"
+                    type="rotate"
+                    from="0 60 60"
+                    to="360 60 60"
+                    repeatCount="indefinite"
+                    />
+        </rect>
+    </svg>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #svg {
+            width: 600px;
+            height: 600px;
+            background: yellowgreen;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //svg放在画布(div)
+            var div = document.getElementById("svg");
+
+            //计算画布的中心点
+            var centerX = div.offsetWidth/2;
+            var centerY = div.offsetHeight/2;
+
+            var circleNum = 9;
+            var angleNum = 360/circleNum;
+            var centerR = 200;
+
+            var otherNodeData = [];
+            var texts = [ "SVG","Node.js","HTML5","CSS3",
+                "V8","Chrome","bootstrap","Firebug","Ajax"];
+
+            for (var i=0; i<circleNum; i++) {
+                var x = Math.sin(i*40*Math.PI/180)*centerR + centerX;
+                var y = Math.cos(i*40*Math.PI/180)*centerR + centerY;
+                otherNodeData.push({"x":x, "y":y, "text":texts[i]});
+            }
+
+            //backend data
+            var data = {
+              centerNode: {text:"JavaScript"},
+              otherNode: otherNodeData
+            };
+
+            var svgNS = "http://www.w3.org/2000/svg";
+
+            function createTag(tag, objAttr) {
+                var tag = document.createElementNS(svgNS, tag);
+                for(attr in objAttr) {
+                    tag.setAttribute(attr, objAttr[attr]);
+                }
+                return tag;
+            }
+
+            var svg = createTag("svg", {'xmlns': svgNS, 'width':'100%', 'height':'100%'});
+
+            function addCenterNode() {
+                var g = createTag("g", {'style':"cursor: pointer;"});
+                var circle = createTag("circle",{"cx":centerX, "cy": centerY, "r":"65","fill":"#58DD31","stroke":"black", "stroke-width":"3"})
+                var text = createTag("text", {"x":centerX,"y":centerY+8,"font-size":"20", "text-anchor":"middle"});
+                text.innerHTML = data.centerNode.text;
+
+                svg.appendChild(g);
+                g.appendChild(circle);
+                g.appendChild(text);
+                div.appendChild(svg);
+            }
+
+            function addOtherNode(x,y,txt) {
+                var g = createTag("g", {'style':"cursor: pointer;",'class':"nodeStyle"});
+                var circle = createTag("circle",{"cx":x, "cy": y, "r":"45","fill":"#5192CD","stroke":"black", "stroke-width":"3"})
+                var text = createTag("text", {"x":x,"y":y+8,"font-size":"20", "fill":"white", "text-anchor":"middle"});
+                text.innerHTML = txt;
+                svg.appendChild(g);
+                g.appendChild(circle);
+                g.appendChild(text);
+                div.appendChild(svg);
+            }
+
+            function addLine(x,y) {
+                var g = createTag("g", {'style':"cursor: pointer;",'class':"lineStyle"});
+                var line1 = createTag("line", {"x1":centerX,"y1":centerY,"x2":x,"y2":y,"stroke":"#aaa","stroke-width":"2"});
+                var line2 = createTag("line", {"x1":centerX,"y1":centerY,"x2":x,"y2":y,"stroke":"transparent","stroke-width":"10"});
+                var xx = (centerX + x)/2;
+                var yy = (centerY + y)/2;
+                var rect = createTag("rect", {"x":xx-10,"y":yy-10,"width":"20","height":"20","fill":"#ccc","rx":"5"});
+                var text = createTag("text", {"x":xx,"y":yy+8,"font-size":"20", "text-anchor":"middle"});
+
+                text.innerHTML = "?";
+
+                svg.appendChild(g);
+                g.appendChild(line1);
+                g.appendChild(line2);
+                g.appendChild(rect);
+                g.appendChild(text);
+
+                div.appendChild(svg);
+            }
+
+            function bind() {
+                var lines = document.getElementsByClassName("lineStyle");
+                var nodes = document.getElementsByClassName("nodeStyle");
+
+                for(var i=0;i<nodes.length;i++) {
+                    nodes[i].onmouseenter = function () {
+                        startMove(this.getElementsByTagName("circle")[0], 30, 45);
+                        var preLineG = this.previousElementSibling;
+                        preLineG.getElementsByTagName("line")[0].setAttribute("stroke", "blue");
+                        preLineG.getElementsByTagName("rect")[0].setAttribute("fill", "yellow");
+                    };
+                    nodes[i].onmouseleave = function () {
+                        //startMove(this.getElementsByTagName("circle")[0], 40, 30);
+                        var preLineG = this.previousElementSibling;
+                        preLineG.getElementsByTagName("line")[0].setAttribute("stroke", "#aaa");
+                        preLineG.getElementsByTagName("rect")[0].setAttribute("fill", "#ccc");
+                    };
+                }
+
+                for(var i=0;i<lines.length;i++) {
+                    lines[i].onmouseenter = function () {
+                        this.getElementsByTagName("line")[0].setAttribute("stroke", "blue");
+                        this.getElementsByTagName("rect")[0].setAttribute("fill", "yellow");
+                    };
+                    lines[i].onmouseleave = function () {
+                        this.getElementsByTagName("line")[0].setAttribute("stroke", "#aaa");
+                        this.getElementsByTagName("rect")[0].setAttribute("fill", "#ccc");
+                    };
+                }
+            }
+
+            function startMove(obj,r1,r2) {
+                var nowR = r1;
+                var overR = r2;
+                obj.speed = 0;
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                   obj.speed += (overR-nowR)/6;
+                   obj.speed *=0.9;
+
+                   if(Math.abs(overR-nowR)<=1 && Math.abs(obj.speed)<=1) {
+                       clearInterval(obj.timer);
+                       obj.setAttribute("r", overR);
+                   } else {
+                       nowR += obj.speed;
+                       obj.setAttribute("r", nowR);
+                   }
+                }, 30);
+            }
+
+            data.otherNode.forEach(function(node){
+                addLine(node.x, node.y);
+                addOtherNode(node.x, node.y, node.text);
+            });
+
+            addCenterNode();
+
+            bind();
+        };
+    </script>
+</head>
+<body>
+    <div id="svg">
+        <!--svg width="100%" height="100%" version="1.1"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <g style="cursor: pointer;">
+                <line x1="100" y1="80" x2="200" y2="360" stroke="#aaa" stroke-width="2"></line>
+                <line x1="100" y1="80" x2="200" y2="360" stroke="transparent" stroke-width="10"></line>
+                <rect x="140" y="210" width="20" height="20" fill="#ccc" rx="5"></rect>
+                <text x="150" y="228" font-size="20" text-anchor="middle">?</text>
+            </g>
+
+            <g style="cursor: pointer;">
+                <circle cx="100" cy="80" r="60" fill="white" stroke="black" stroke-width="3"/>
+                <text x="100" y="88" font-size="20" text-anchor="middle">SVG</text>
+            </g>
+
+            <g style="cursor: pointer;">
+                <circle cx="200" cy="360" r="80" fill="blueviolet" stroke="black" stroke-width="3"/>
+                <text x="200" y="368" font-size="20" text-anchor="middle">JavaScript</text>
+            </g>
+
+        </svg-->
+    </div>
+</svg>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #svg {
+            width: 600px;
+            height: 600px;
+            background: yellowgreen;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var div = document.getElementById("svg");
+
+            var svgNS = "http://www.w3.org/2000/svg";
+            /*var svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute('xmlns', svgNS);
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            div.appendChild(svg);*/
+
+
+            function createTag(tag, objAttr) {
+                var tag = document.createElementNS(svgNS, tag);
+                for(attr in objAttr) {
+                    tag.setAttribute(attr, objAttr[attr]);
+                }
+
+                return tag
+            }
+
+            var svg = createTag("svg", {'xmlns': svgNS, 'width':'100%', 'height':'100%'});
+            var g = createTag("g", {'style':"cursor: pointer;"});
+            var line1 = createTag("line", {"x1":"100","y1":"80","x2":"200","y2":"360","stroke":"#aaa","stroke-width":"2"});
+            var line2 = createTag("line", {"x1":"100","y1":"80","x2":"200","y2":"360","stroke":"transparent","stroke-width":"10"});
+            var rect = createTag("rect", {"x":"140","y":"210","width":"20","height":"20","fill":"#ccc","rx":"5"});
+            var text = createTag("text", {"x":"150","y":"228","font-size":"20", "text-anchor":"middle"});
+
+            text.innerHTML = "?";
+
+            svg.appendChild(g);
+            g.appendChild(line1);
+            g.appendChild(line2);
+            g.appendChild(rect);
+            g.appendChild(text);
+
+            div.appendChild(svg);
+        };
+    </script>
+</head>
+<body>
+    //计算方式:
+    <div id="svg">
+        <!--svg width="100%" height="100%" version="1.1"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <g style="cursor: pointer;">
+                <line x1="100" y1="80" x2="200" y2="360" stroke="#aaa" stroke-width="2"></line>
+                <line x1="100" y1="80" x2="200" y2="360" stroke="transparent" stroke-width="10"></line>
+                <rect x="140" y="210" width="20" height="20" fill="#ccc" rx="5"></rect>
+                <text x="150" y="228" font-size="20" text-anchor="middle">?</text>
+            </g>
+
+            <g style="cursor: pointer;">
+                <circle cx="100" cy="80" r="60" fill="white" stroke="black" stroke-width="3"/>
+                <text x="100" y="88" font-size="20" text-anchor="middle">SVG</text>
+            </g>
+
+            <g style="cursor: pointer;">
+                <circle cx="200" cy="360" r="80" fill="blueviolet" stroke="black" stroke-width="3"/>
+                <text x="200" y="368" font-size="20" text-anchor="middle">JavaScript</text>
+            </g>
+
+        </svg-->
+    </div>
+</svg>
+</body>
+</html>
