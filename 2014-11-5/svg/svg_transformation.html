@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #svg {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <rect x="50" y="50" height="110" width="110"
+                  style="stroke:#ff0000; fill: #ccccff"
+                  transform="translate(30) rotate(45 50 50)"
+                    >
+            </rect>
+            <text x="70" y="100"
+                  transform="translate(30) rotate(45 50 50)"
+                    >Hello World</text>
+
+            <rect x="20" y="20" width="40" height="40"
+                  style="stroke: #3333cc; fill:none;"
+                    />
+
+            <rect x="20" y="20" width="40" height="40"
+                  style="fill: #3333cc"
+                  transform="rotate(15)"
+                    />
+        </svg>
+    </div>
+</body>
+</html>
