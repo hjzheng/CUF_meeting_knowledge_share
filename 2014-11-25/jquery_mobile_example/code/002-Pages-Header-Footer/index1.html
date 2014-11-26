@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Pages Header and Footer Example</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>Home Page</h1>
+        </div>
+        <div data-role="content">
+            <div>
+                This is Home Page
+                <a href="#about" data-transition="pop">go to about page</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Footer of Home Page</h1>
+        </div>
+    </div>
+    <div data-role="page" id="about">
+        <div data-role="header">
+            <h1>About Page</h1>
+        </div>
+        <div data-role="content">
+            <div>
+                This is About Page
+                <a href="#home" data-transition="pop">back home</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Footer of About Page</h1>
+        </div>
+    </div>
+    <!--
+        Page is the basic element of jQuery Mobile.
+        – Use <div data-role="page"> to define a Page
+        – One HTML file must contain at least one Page
+        – One HTML file can contain multiple Pages
+        – If there are multiple pages in one html file, the first Page will be
+        the main page. Main Page will be displayed when the html file is accessed.
+        – To access the other pages except main Page, a anchor should
+        be used. IE: page.html#pageID
+        – Page can be fullscreen with the property of data-fullscreen="true"
+    -->
+</body>
+
+</html>

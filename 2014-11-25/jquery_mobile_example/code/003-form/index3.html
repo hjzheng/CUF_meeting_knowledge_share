@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Form Radio</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>Home Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <legend>Please choose your javascript library:</legend>
+                    <input type="radio" name="jslib" id="jslib_Dojo" />
+                    <label for="jslib_Dojo">Dojo</label>
+                    <input type="radio" name="jslib" id="jslib_jQuery" />
+                    <label for="jslib_jQuery">jQuery</label>
+                    <input type="radio" name="jslib" id="jslib_ExtJS" />
+                    <label for="jslib_ExtJS">ExtJS</label>
+                </fieldset>
+            </div>
+            <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup" data-type="horizontal">
+                    <legend>Please choose your OS:</legend>
+                    <input type="radio" name="os" id="os_Windows" />
+                    <label for="os_Windows">Windows</label>
+                    <input type="radio" name="os" id="os_Unix" />
+                    <label for="os_Unix">Unix</label>
+                    <input type="radio" name="os" id="os_ZOS" />
+                    <label for="os_ZOS">ZOS</label>
+                </fieldset>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Footer of Home Page</h1>
+        </div>
+    </div>
+    <div data-role="page" id="about" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>About Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <div>This is About Page</div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Footer of About Page</h1>
+        </div>
+    </div>
+    <!--
+    - Form – Radio
+    - Radio is the control that allows user to select one item among some options.
+    - A control group is needed to put options in one group
+    - There are two forms of Radio in jQuery Mobile: horizontal and vertical. Vertical radio has a radio button with it
+
+    -->
+</body>
+
+</html>

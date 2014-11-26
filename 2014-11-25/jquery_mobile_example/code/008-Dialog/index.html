@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Slide Panel</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" data-add-back-btn="true" data-back-btn-text="test" id="main" data-rel="back">
+        <div data-role="header" data-position="fixed" id="myheader">
+            <h1>Panel</h1>
+        </div>
+        <div data-role="content" id="content">
+           <a href="#mydialog" data-role="button" data-rel="dialog">Show Dialog</a>
+        </div>
+        <div data-role="footer" data-position="fixed" id="myfooter">
+            <h1>Panel Footer</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="mydialog">
+        <div data-role="header" data-position="fixed" id="myheader">
+            <H1>Dialog</H1>
+        </div>
+        <div data-role="content">
+            <H3>Are you sure to quit with out saving?</H3>
+            <a href="" data-role="button" data-rel="back">Yes</a>
+            <a href="" data-role="button" data-rel="back">No</a>
+        </div>
+        <div data-role="footer" data-position="fixed" id="myfooter">
+            <H1>Dialog Footer</H1>
+        </div>
+    </div>
+</body>
+
+</html>

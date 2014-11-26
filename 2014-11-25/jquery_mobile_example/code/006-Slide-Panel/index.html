@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Slide Panel</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" data-add-back-btn="true" data-back-btn-text="test" id="main" data-rel="back">
+        <div data-role="header" data-position="fixed" id="myheader">
+            <h1>Panel</h1>
+        </div>
+        <div data-role="content" id="content">
+            <a href="#mypanel" data-role="button">Show Panel</a>
+        </div>
+            <div data-role="panel" data-position="left" data-display="reveal" id="mypanel" data-theme="d" data-positionfixed="true">
+            <a href="#" data-role="button" data-rel="close" data-icon="delete" data-iconpos="right" class="ui-btn-right">back</a>
+        </div>
+        <div data-role="footer" data-position="fixed" id="myfooter">
+            <h1>Panel Footer</h1>
+        </div>
+    </div>
+
+</body>
+
+</html>

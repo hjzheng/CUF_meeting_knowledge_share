@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Form</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <h1>Home Page</h1>
+        </div>
+        <div data-role="content">
+            <div>
+                <div data-role="content">
+                    <form action="form.request">
+                        <div data-role="fieldcontain">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="email" value="" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="about">
+        <div data-role="header">
+            <h1>About Page</h1>
+        </div>
+        <div data-role="content">
+            <div>
+                This is About Page
+                <a href="#home" data-transition="pop">back home</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--
+    - To submit data from client to server, form and form fields are needed.
+    - jQuery mobile wraps html controls for mobile device, which makes
+form fields better look&feel and easy to use.
+    - Form fields are automatically enhanced by default in jQuery mobile
+application.
+    - Form submits form data via Ajax in jQuery mobile application.
+    - Form fields contains : text, radio, select, checkbox, slider, button, etc.
+
+    - jQuery Mobile use fieldcontain to align the label and form field
+    - Each fieldcontain requies one label and one form field
+    -->
+</body>
+
+</html>

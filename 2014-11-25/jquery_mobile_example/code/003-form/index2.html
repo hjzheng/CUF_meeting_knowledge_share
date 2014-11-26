@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Form Text Fields</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home">
+        <div data-role="header">
+            <a href="#" data-icon="home ">Home</a>
+            <h1>Home Page</h1>
+            <a href="#" data-icon="info">About</a>
+        </div>
+        <div data-role="content">
+            <div data-role="fieldcontain">
+                <label for="userId">User ID:</label>
+                <input type="text" name="userId" id="userId" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="" />
+            </div>
+            <div data-role="fieldcontain">
+                <label for="city">City:</label>
+                <input type="search" name="city" id="city" value="" />
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <h1>Footer of Home Page</h1>
+        </div>
+    </div>
+    <!--
+    - Form – Text Fields
+    - Text fields are controls for user to type words
+    -->
+</body>
+
+</html>

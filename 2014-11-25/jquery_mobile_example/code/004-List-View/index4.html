@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Form Select</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>Home Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="oslist" data-inset="true" data-split-icon="home">
+                <li>
+                    <a href="#windows">Windows</a>
+                    <a href="#vote"></a>
+                </li>
+                <li data-icon="gear">Linux</li>
+                <li data-icon="gear">
+                    <a href="#unix">Unix</a>
+                    <a href="#vote"></a>
+                </li>
+                <li data-icon="plus">
+                    <a href="#zos">Z/OS</a>
+                    <a href="#vote"></a>
+                </li>
+            </ul>
+
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="about" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>About Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <div>This is About Page</div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--
+    - Form - Select
+    - Select menu provides a list for user to select value(s)
+    -->
+</body>
+
+</html>

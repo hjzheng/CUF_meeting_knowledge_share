@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>Header</title>
+	    <!--设置viewport-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!--引入CSS-->
+	    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+	    <!--引入jq and jqm js-->
+	    <script src="../../vendor/jquery/jquery.min.js"></script>
+	    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+<body>
+    <div data-role="page" id="home" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>Home Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <div>
+                This is Home Page
+                <a href="#about"> go to about page</a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="about" data-add-back-btn="true">
+        <div data-role="header">
+            <h1>About Page</h1>
+            <a href="#home" data-icon="home" class="ui-btn-right">Home</a>
+        </div>
+        <div data-role="content">
+            <div>This is About Page</div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#home" class="ui-btnactive ui-state-persist ">Home</a>
+                    </li>
+                    <li><a href="#contact">Contact Us</a>
+                    </li>
+                    <li><a href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--
+   Footer is the last part of a Page, it is located at the bottom of the Page.
+    – Footer can be fixed in the bottom of screen with data-position="fixed"
+    – Messages can be used like what Header does
+    – Buttons can be placed in Footer
+    – Navigate bar can be placed in Footer
+    -->
+</body>
+
+</html>
