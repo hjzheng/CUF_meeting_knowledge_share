@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Header</title>
+    <!--设置viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--引入CSS-->
+    <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+    <!--引入jq and jqm js-->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page" id="home">
+        <div data-role="panel" data-position="left" data-display="push" id="buttonPanel" data-theme="b" data-position-fixed="true">
+            <ul data-role="listview" style="min-width:200px;">
+                <li data-role="list-divider">
+                    <h2>Choose an action</h2>
+                </li>
+                <li><a href="#">xxxxx</a>
+                </li>
+                <li><a href="#">xxxxx</a>
+                </li>
+                <li><a href="#">xxxxx</a>
+                </li>
+                <li data-icon="delete"><a href="#" data-rel="close">Back</a>
+                </li>
+            </ul>
+        </div>
+
+        <div data-role="panel" data-position="right" data-display="push" id="detailPanel" data-theme="b" data-position-fixed="true">
+            <a href="#" data-role="button" data-rel="close" data-icon="delete" class="ui-btn-left">back</a>
+        </div>
+
+        <div data-role="header" data-position="fixed">
+            <h1>Home Page</h1>
+            <a href="#home" class="ui-btn ui-btn-left ui-shadow ui-icon-bars ui-btn-icon-notext">
+                bars
+            </a>
+            <a href="#home" class="ui-btn ui-btn-right ui-shadow ui-icon-user ui-btn-icon-notext">
+                user
+            </a>
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#" data-icon="bullets"></a>
+                    </li>
+                    <li>
+                        <a href="#" data-icon="search"></a>
+                    </li>
+                    <li>
+                        <a href="#" data-icon="star"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-split-icon="gear" id="jobList">
+                <li>
+                    <a href="#detailPanel">
+                        <h2>Windows</h2>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p class="ui-li-aside">message</p>
+                    </a>
+                    <a href="#buttonPanel"></a>
+                </li>
+                <li>
+                    <a href="#detailPanel">
+                        <h2>Linux</h2>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p class="ui-li-aside">message</p>
+                    </a>
+                    <a href="#buttonPanel"></a>
+                </li>
+                <li>
+                    <a href="#detailPanel">
+                        <h2>Linux</h2>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p class="ui-li-aside">message</p>
+                    </a>
+                    <a href="#buttonPanel"></a>
+                </li>
+                <li>
+                    <a href="#detailPanel">
+                        <h2>Linux</h2>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p class="ui-li-aside">message</p>
+                    </a>
+                    <a href="#buttonPanel"></a>
+                </li>
+                <li>
+                    <a href="#detailPanel">
+                        <h2>Linux</h2>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p>xxxxx xxx xxxx xxxxx xxxxx</p>
+                        <p class="ui-li-aside">message</p>
+                    </a>
+                    <a href="#buttonPanel"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
