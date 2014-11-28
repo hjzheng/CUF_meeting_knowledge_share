@@ -7,88 +7,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--引入CSS-->
     <link rel="stylesheet" href="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.css" />
+
+    <style>
+        .ui-li-static.ui-collapsible > .ui-collapsible-heading {
+            margin: 0;
+        }
+        .ui-li-static.ui-collapsible {
+            padding: 0;
+        }
+        .ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+            border-top-width: 0;
+        }
+        .ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+        .ui-li-static.ui-collapsible > .ui-collapsible-content {
+            border-bottom-width: 0;
+        }
+    </style>
+
     <!--引入jq and jqm js-->
     <script src="../../vendor/jquery/jquery.min.js"></script>
     <script src="../../vendor/jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body>
+
+    <div data-role="page" id="details">
+
+        <div data-role="panel" data-position="right" data-display="push" id="userPanel" data-theme="b" data-position-fixed="true">
+            <h2>User Panel</h2>
+        </div>
+
+        <div data-role="header" data-position="fixed">
+            <h1>Detail Page</h1>
+            <a href="#home" class="ui-btn ui-btn-left ui-shadow ui-icon-bars ui-btn-icon-notext">
+                bars
+            </a>
+            <a href="#userPanel" class="ui-btn ui-btn-right ui-shadow ui-icon-user ui-btn-icon-notext">
+                user
+            </a>
+        </div>
+        <div data-role="content">
+            List Item Detail information
+            <a data-icon="delete" href="#home" data-role="button">Back</a>
+        </div>
+    </div>
+
     <div data-role="page" id="home">
-        <div data-role="panel" data-position="left" data-display="push" id="buttonPanel" data-theme="b" data-position-fixed="true">
-            <ul data-role="listview" style="min-width:200px;">
-                <li data-role="list-divider">
-                    <h2>Choose an action</h2>
-                </li>
-                <li><a href="#">xxxxx</a>
-                </li>
-                <li><a href="#">xxxxxx</a>
-                </li>
-                <li><a href="#">xxxxx</a>
-                </li>
-                <li data-icon="delete"><a href="#" data-rel="close">Back</a>
-                </li>
+
+        <div data-role="panel" data-position="right" data-display="push" id="userPanel" data-theme="b" data-position-fixed="true">
+            <h2>User Panel</h2>
+        </div>
+
+        <div data-role="popup" id="popupActionMenu" data-theme="b">
+            <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                <li data-role="list-divider">Choose an action</li>
+                <li><a href="#">View details</a></li>
+                <li><a href="#">Edit</a></li>
+                <li><a href="#">Disable</a></li>
+                <li><a href="#">Delete</a></li>
             </ul>
         </div>
 
-        <div data-role="panel" data-position="right" data-display="push" id="detailPanel" data-theme="b" data-position-fixed="true">
-            <a href="#" data-role="button" data-rel="close" data-icon="delete" class="ui-btn-left">back</a>
-        </div>
 
         <div data-role="header" data-position="fixed">
             <h1>Home Page</h1>
             <a href="#home" class="ui-btn ui-btn-left ui-shadow ui-icon-bars ui-btn-icon-notext">
                 bars
             </a>
-            <a href="#home" class="ui-btn ui-btn-right ui-shadow ui-icon-user ui-btn-icon-notext">
+            <a href="#userPanel" class="ui-btn ui-btn-right ui-shadow ui-icon-user ui-btn-icon-notext">
                 user
             </a>
         </div>
         <div data-role="content">
             <ul data-role="listview" data-split-icon="gear" id="jobList">
-                <li>
-                    <a href="#detailPanel">
+                <li data-role="collapsible">
+                    <a href="#details" data-transition="slidedown">
                         <h2>Windows</h2>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p class="ui-li-aside">message</p>
                     </a>
-                    <a href="#buttonPanel"></a>
+                    <a href="#popupActionMenu" data-rel="popup" data-transition="slide"></a>
                 </li>
                 <li>
-                    <a href="#detailPanel">
+                    <a href="#details" data-transition="slidedown">
                         <h2>Linux</h2>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p class="ui-li-aside">message</p>
                     </a>
-                    <a href="#buttonPanel"></a>
+                    <a href="#popupActionMenu" data-rel="popup" data-transition="slide"></a>
                 </li>
                 <li>
-                    <a href="#detailPanel">
+                    <a href="#details" data-transition="slidedown">
                         <h2>Linux</h2>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p class="ui-li-aside">message</p>
                     </a>
-                    <a href="#buttonPanel"></a>
+                    <a href="#popupActionMenu" data-rel="popup" data-transition="slide"></a>
                 </li>
                 <li>
-                    <a href="#detailPanel">
+                    <a href="#details" data-transition="slidedown">
                         <h2>Linux</h2>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p class="ui-li-aside">message</p>
                     </a>
-                    <a href="#buttonPanel"></a>
+                    <a href="#popupActionMenu" data-rel="popup" data-transition="slide"></a>
                 </li>
                 <li>
-                    <a href="#detailPanel">
+                    <a href="#details" data-transition="slidedown">
                         <h2>Linux</h2>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p>xxxxx xxx xxxx xxxxx xxxxx</p>
                         <p class="ui-li-aside">message</p>
                     </a>
-                    <a href="#buttonPanel"></a>
+                    <a href="#popupActionMenu" data-rel="popup" data-transition="slide"></a>
                 </li>
             </ul>
         </div>
