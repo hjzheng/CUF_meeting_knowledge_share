@@ -1,0 +1,13 @@
+{
+    "test": {
+       "title": "angular-translate",
+       "subtitle": "i18n in your Angular apps, made easy."
+    },
+    "content": {
+       "firstline": "This is the first line.",
+       "secondline": "This is the second line.",
+       "hello": "hello {{name}} !!!"  
+    },
+    "BUTTON_LANG_ZH": "Chinese",
+    "BUTTON_LANG_EN": "English"    
+}

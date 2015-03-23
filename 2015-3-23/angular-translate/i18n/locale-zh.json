@@ -1,0 +1,13 @@
+{
+    "test": {
+       "title": "angular-translate",
+       "subtitle": "Angular应用的国际化工具。"
+    },
+    "content": {
+       "firstline": "这是第一行。",
+       "secondline": "这是第二行。",
+       "hello": "你好 {{name}} ！！！" 
+    },
+    "BUTTON_LANG_ZH": "中文",
+    "BUTTON_LANG_EN": "英文"    
+}
