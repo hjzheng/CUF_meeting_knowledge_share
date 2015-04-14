@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+</head>
+<body ng-app="app">
+   <div ng-controller="treeController" class="container">
+       <div class="row">
+           <h2>ng-repeat recursive list example</h2>
+           <ul>
+               <li ng-repeat="item in tree" ng-include="'treeItem'"></li>
+           </ul>
+       </div>
+       <div class="row">
+           <h2>ng-repeat recursive tree grid example</h2>
+           <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>score</td>
+                        <td>city</td>
+                        <td>birthday</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in tree | filterTreeItem:itemId:isExpend">
+                        <td>
+                            <span style="padding-left: {{item.level * 30}}px;">
+                                <span class="glyphicon" ng-click="itemClick(item.id, item.expend);"
+                                  ng-class="{'glyphicon-minus': !item.leaf && item.expend, 'glyphicon-plus': !item.leaf && !item.expend, 'glyphicon-leaf': item.leaf}">
+                                </span>
+                                {{item.id}}
+                            </span>
+                        </td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.score}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.birthday}}</td>
+                    </tr>
+                </tbody>
+           </table>
+       </div>
+   </div>
+
+    <script src="../../vendor/angularjs/angularjs.js"></script>
+    <script src="treeList.js"></script>
+    <script type="text/ng-template" id="treeItem">
+        {{item.id}}
+        <ul ng-if="item.children">
+           <li ng-repeat="item in item.children" ng-include="'treeItem'">
+           </li>
+       </ul>
+    </script>
+</body>
+</html>
