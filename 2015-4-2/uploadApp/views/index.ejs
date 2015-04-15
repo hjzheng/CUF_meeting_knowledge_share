@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload-all.min.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>
+    <style>
+        .dropzone {
+            border: 2px dashed #bbb;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            font: 20pt bold;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+    </style>
+  </head>
+  <body class="container" ng-app="fileUpload">
+    <div class="row" ng-controller="uploadController">
+        <div class="col-xs-12">
+           <div class="form-group">
+                <div class="col-sm-12">
+                    <h1>
+                       <%= title %>
+                    </h1>
+                    <div ng-file-drop ng-file-select ng-model="files" class="dropzone" 
+                        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+                        accept="">Drop file here or click to upload</div>
+                    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>File Size</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="f in fileList" style="font:smaller">
+                                <td>{{f.name}}</td>
+                                <td>{{f.size}}</td>
+                                <td><progressbar value="f.dynamic" style="margin-bottom:0px;" type="success"><b>{{f.dynamic}}%</b></progressbar></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>   
+        </div>
+    </div>
+    <script>
+        angular.module("fileUpload",["ui.bootstrap", "angularFileUpload"])
+        .controller("uploadController", function ($scope, $upload, $filter, $timeout) {
+
+            $scope.fileList = [];
+
+            $scope.$watch('files', function (f) {
+                if(f&&f[0]) {
+                    $scope.upload(f);
+                    angular.forEach(f, function(file){
+                       $scope.fileList.push(file);
+                    })
+                }    
+            });
+
+            $scope.removeFile = function(fileName) {
+                angular.forEach($scope.fileList, function(f, index){
+                    if(f.name == fileName){
+                        $scope.fileList.splice(index, 1);
+                        return;
+                    }
+                });
+            };
+            
+            $scope.upload = function (files) {
+                if (files && files.length) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        file.dynamic = 0;
+                        $scope.uploadFile(file); 
+                        /*$upload.upload({
+                            url: '/upload',
+                            file: file
+                        }).progress(function (evt) {
+                            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            file.dynamic = progressPercentage;
+                            console.log('progress: ' + progressPercentage + '% ' +
+                                        evt.config.file.name);
+                        }).success(function (data, status, headers, config) {
+                            console.log('file ' + config.file.name + 'uploaded. Response: ' +
+                                        JSON.stringify(data));
+                        });*/
+                    }
+                }
+            };
+
+            $scope.uploadFile = function(file){
+                        
+                file.upload = $upload.upload({
+                    url: '/upload',
+                    file: file
+                });
+
+                file.upload.then(function(response) {
+        		   $timeout(function() {
+        		       file.result = response.data;
+        		   });
+        		}, function(response) {
+        	       //if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+        		});
+
+        		file.upload.progress(function(evt) {
+        		   // Math.min is to fix IE which reports 200% sometimes
+        		   file.dynamic = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        		});
+
+        		file.upload.xhr(function(xhr) {
+        		   // xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
+        		});
+            }; 
+        });
+    </script>
+  </body>
+</html>
