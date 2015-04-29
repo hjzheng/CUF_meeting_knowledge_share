@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular formly Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/api-check/dist/api-check.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
+
+    <script src="angular-formly-example.js"></script>
+</head>
+
+<body ng-app="formlyExample" ng-controller="MainCtrl as vm" class="container">
+  <div class="row">
+    <div>
+      <h1>angular-formly example: {{::vm.exampleTitle}}</h1>
+      <div>
+        This is a small subset of the things that formly can do :-)
+        See the other examples and the documentation for more.
+      </div>
+      <form ng-submit="vm.onSubmit()" novalidate>
+        <formly-form model="vm.model" fields="vm.formFields">
+          <button type="submit" class="btn btn-primary submit-button">Submit</button>
+        </formly-form>
+      </form>
+      <h2>Form Data</h2>
+      <pre>{{vm.model | json}}</pre>
+    </div>
+
+    <div style="margin-top:30px">
+      <small>
+        This is an example for the
+        <a href="https://formly-js.github.io/angular-formly">angular-formly</a>
+        project made with ♥ by
+        <strong>
+          <span ng-if="!vm.author.name || !vm.author.url">
+            {{vm.author.name || 'anonymous'}}
+          </span>
+          <a ng-if="vm.author.url" ng-href="{{::vm.author.url}}">
+            {{vm.author.name}}
+          </a>
+        </strong>
+                <br />
+        This example is running angular version "{{vm.env.angularVersion}}" and formly version "{{vm.env.formlyVersion}}"
+      </small>
+    </div>
+  </div>  
+    <!-- Put custom templates here -->
+    
+    <script type="text/ng-template" id="custom.html">
+      <div class="form-group">
+        <label for="{{::id}}">{{options.templateOptions.label}}</label>
+        <input id="{{::id}}" name="{{::id}}" class="form-control" ng-model="model[options.key]" />
+      </div>
+    </script>
+    <script type="text/ng-template" id="example-directive.html">
+      <div class="form-group">
+        <label for="{{::id}}">{{options.templateOptions.label}}</label>
+        <input id="{{::id}}" name="{{::id}}" class="form-control" ng-model="model[options.key]" />
+      </div>
+    </script>
+
+  </body>
+
+</html>
+

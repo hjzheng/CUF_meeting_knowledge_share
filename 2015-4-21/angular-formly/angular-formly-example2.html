@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular formly Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/api-check/dist/api-check.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
+
+    <script src="angular-formly-example2.js"></script>
+    <style type="text/css">
+      .formly-field {
+        margin-bottom: 16px;
+      }
+
+
+      /* messages fanciness */
+      .my-messages {
+        position: relative;
+      }
+
+      .my-messages, .some-message {
+        opacity: 1;
+        transition: .3s linear all;
+      }
+
+      .some-message {
+        font-size: .8em;
+        position: absolute;
+        width: 100%;
+        color: #a94442;
+      }
+
+      .my-messages.ng-enter.ng-enter-active,
+      .some-message.ng-enter.ng-enter-active {
+        opacity: 1;
+        top: 0;
+      }
+
+      .my-messages.ng-enter,
+      .some-message.ng-enter {
+        opacity: 0;
+        top: -10px;
+      }
+
+      .my-messages.ng-leave,
+      .some-message.ng-leave {
+        opacity: 1;
+        top: 0;
+      }
+
+      .my-messages.ng-leave-active,
+      .some-message.ng-leave-active {
+        opacity: 0;
+        top: -10px;
+      }
+    </style>
+</head>
+
+
+<body ng-app="formlyExample" ng-controller="MainCtrl as vm" class="container">
+  <div class="row">
+    <div>
+      <h1>angular-formly example: {{vm.exampleTitle}}</h1>
+      <div>
+        This is an example I created for <a href="https://youtu.be/FvIj5n7dF2Y">this hangout on air</a> with
+        <a href="https://www.codementor.io/">Codementor.io</a> office hours. It demonstrates several features of angular-formly.
+      </div>
+      <hr />
+      <form ng-submit="vm.onSubmit()" novalidate>
+        <formly-form model="vm.model" fields="vm.fields" form="vm.form" options="vm.options">
+          <button type="submit" class="btn btn-primary submit-button">Submit</button>
+          <button type="button" class="btn btn-default submit-button" ng-click="vm.options.resetModel()">Reset</button>
+        </formly-form>
+      </form>
+      <hr />
+      <h2>Model</h2>
+      <pre>{{vm.model | json}}</pre>
+      <h2>Fields <small>(note, functions are not shown)</small></h2>
+      <pre>{{vm.originalFields | json}}</pre>
+      <h2>Form</h2>
+      <pre>{{vm.form | json}}</pre>
+    </div>
+
+    <div style="margin-top:30px">
+      <small>
+        This is an example for the
+        <a href="https://formly-js.github.io/angular-formly">angular-formly</a>
+        project made with ♥ by
+        <strong>
+          <span ng-if="!vm.author.name || !vm.author.url">
+            {{vm.author.name || 'anonymous'}}
+          </span>
+          <a ng-if="vm.author.url" ng-href="{{::vm.author.url}}">
+            {{vm.author.name}}
+          </a>
+        </strong>
+        <br />
+        This example is running angular version "{{vm.env.angularVersion}}" and formly version "{{vm.env.formlyVersion}}"
+      </small>
+    </div>
+
+    <!-- Put custom templates here -->
+    <script type="text/ng-template" id="my-messages.html">
+      <formly-transclude></formly-transclude>
+      <div class="my-messages" ng-messages="fc.$error" ng-if="options.formControl.$touched">
+        <div class="some-message" ng-message="{{::name}}" ng-repeat="(name, message) in ::options.validation.messages">
+          {{message(fc.$viewValue, fc.$modelValue, this)}}
+        </div>
+      </div>
+    </script>
+  </div>
+</body>
+
+</html>
+
