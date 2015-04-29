@@ -18,3 +18,7 @@ nodejs调试工具
   ###用chrome打开url: http://127.0.0.1:8899/debug?port=5858###
 ```
 - forever 让nodejs应用后台执行
+```shell
+   #nodejs后台运行
+   forever  ./bin/www
+```
