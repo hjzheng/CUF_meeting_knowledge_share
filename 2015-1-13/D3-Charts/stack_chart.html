@@ -1,0 +1,82 @@
+	<html>
+<head>
+<script src="./d3.js"></script>
+<style type="text/css">
+	body {
+		font-family: Arial, sans-serif;
+		font-size: 10px;
+	}
+</style>
+</head>
+<body>
+
+	<h2>Stack Chart</h2>
+
+	<div id="stackChart1"></div>
+	<div id="stackChart2"></div>
+	<div id="stackChart3"></div>
+
+	<script type="text/javascript">
+
+	var dataset1 = [5, 10, 13];
+	var dataset2 = [10, 100, 300];
+	var dataset3 = [90, 20, 300];
+	var colors = ['#5ae98b', '#ffec99', '#d9d9d9'];
+
+
+	drawStackChart("#stackChart1", dataset1, colors);
+	drawStackChart("#stackChart2", dataset2, colors);
+	drawStackChart("#stackChart3", dataset3, colors);
+
+	function drawStackChart(selector, dataset, colors){
+		//Stack Chart
+		var w = 200;
+		var h = 32;
+
+		var stack_h = 20;
+		var stack_y = 10
+		
+		var xScale = d3.scale.linear()
+						.domain([0, d3.sum(dataset)])
+						.range([0, w]);
+
+		//Create SVG element
+		var svg = d3.select(selector)
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+
+		//Create bars
+		svg.selectAll("rect")
+		   .data(dataset)
+		   .enter()
+		   .append("rect")
+		   .attr("x", function(d, i) {
+		   	    var stack_x = 0;
+		   	    for(var j=0; j<dataset.length; j++){
+                     if(i == j) {
+                     	break;
+                     }
+                     stack_x += dataset[j];
+		   	    }
+		   		return xScale(stack_x);
+		   })
+		   .attr("y", function(d) {
+		   		return stack_y;
+		   })
+		   .attr("width", function(d) {
+		   	    return xScale(d);
+		   })
+		   .attr("height", function(d) {
+		   		return stack_h;
+		   })
+		   .attr("fill", function(d, i) {
+				return colors[i];
+		   });
+		
+	}
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+	<html>
+<head>
+<script src="./d3.js"></script>
+<style type="text/css">
+	body {
+		font-family: Arial, sans-serif;
+		font-size: 10px;
+	}
+	
+</style>
+</head>
+<body>
+
+	<h2>Bar Chart</h2>
+	<div id="barChart"></div>
+
+	<script type="text/javascript">
+		//Bar Chart
+	var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+					11, 12, 15, 20, 18, 17, 16 ];
+
+	drawBarChart("#barChart", dataset);
+
+	function drawBarChart(selector, dataset){   
+	   	var w = 200;
+		var h = 32;
+
+		var xScale = d3.scale.ordinal()
+						.domain(d3.range(dataset.length))
+						.rangeRoundBands([0, w], 0.1);
+
+		var yScale = d3.scale.linear()
+						.domain([0, d3.max(dataset)])
+						.range([0, h-10]);
+
+		//Create SVG element
+		var svg = d3.select(selector)
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+
+		//Create bars
+		svg.selectAll("rect")
+		   .data(dataset)
+		   .enter()
+		   .append("rect")
+		   .attr("x", function(d, i) {
+		   		return xScale(i);
+		   })
+		   .attr("y", function(d) {
+		   		return h - yScale(d);
+		   })
+		   .attr("width", xScale.rangeBand())
+		   .attr("height", function(d) {
+		   		return yScale(d);
+		   })
+		   .attr("fill", function(d) {
+				return "#bfedff";
+		   });
+	}
+
+	</script>
+
+</body>
+</html>

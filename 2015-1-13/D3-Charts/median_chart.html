@@ -1,0 +1,104 @@
+	<html>
+<head>
+<script src="./d3.js"></script>
+<style type="text/css">
+	body {
+		font-family: Arial, sans-serif;
+		font-size: 10px;
+	}
+</style>
+</head>
+<body>
+
+	<h2>median Chart</h2>
+
+	<div id="medianChart1"></div>
+	<div id="medianChart2"></div>
+	<div id="medianChart3"></div>
+
+	<script type="text/javascript">
+
+	var dataset1 = [0, 5, 15, 55, 100];
+	var dataset2 = [0, 30, 45, 60, 100];
+	var dataset3 = [0, 40, 80, 90, 100];
+
+	
+	drawMedianChart("#medianChart1", dataset1);
+	drawMedianChart("#medianChart2", dataset2);
+	drawMedianChart("#medianChart3", dataset3);
+
+	function drawMedianChart(selector, dataset){
+		//median Chart
+		median_line_x = dataset[2];
+
+		dataset = dataset.map(function(d, i){
+			return dataset[i+1] -d;
+		});
+
+		dataset.pop();
+
+		var w = 200;
+		var h = 32;
+
+		var median_h = h/2;
+		var median_y = h/4;
+		
+		var xScale = d3.scale.linear()
+						.domain([0, d3.sum(dataset)])
+						.range([0, w]);
+
+		var median_line = {"x": xScale(median_line_x), "y": median_y - 1, "width": 2, "height": median_h + 2, "fill": "#818688"};
+
+		//Create SVG element
+		var svg = d3.select(selector)
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+
+		//Create median
+		svg.selectAll("rect")
+		   .data(dataset)
+		   .enter()
+		   .append("rect")
+		   .attr("x", function(d, i) {
+		   	    var meida_x = 0;
+		   	    for(var j=0; j<dataset.length; j++){
+                     if(i == j) {
+                     	break;
+                     }
+                     meida_x += dataset[j];
+		   	    }
+		   		return xScale(meida_x);
+		   })
+		   .attr("y", function(d, i) {
+		   	    if(i==0 || i==3) {
+		   	    	return h/2;
+		   	    } else {
+					return median_y;
+		   	    }
+		   })
+		   .attr("width", function(d) {
+		   	    return xScale(d);
+		   })
+		   .attr("height", function(d, i) {
+		   		if(i==0 || i==3) {
+		   	    	return 2;
+		   	    } else {
+					return median_h;
+		   	    }
+		   })
+		   .attr("fill", function(d, i) {
+		   	    if (i==0 || i==3){
+		   	    	return "#dadada";
+		   	    } else {
+					return "#bfedff";
+		   	    }
+		   });
+
+		svg.append("rect").attr(median_line);
+	}
+
+	</script>
+
+</body>
+</html>
