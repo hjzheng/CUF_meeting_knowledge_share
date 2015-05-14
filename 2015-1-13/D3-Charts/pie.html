@@ -1,0 +1,86 @@
+<html>
+	<head>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+
+var data = [{'name':'QA', 'num': 22},{'name':'DEV', 'num': 109},{'name': 'Others', 'num': 10 }];
+
+var width = 400,
+    height = 250,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.ordinal()
+    .range(["#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#98abc5", "#8a89a6", "#7b6888"]);
+
+var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.num; });
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + (radius + 20) + "," + height / 2 + ")");
+
+
+for(var i=0; i<data.length; i++){
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+      .enter().append("g")
+      .attr("class", "arc")
+      .attr("stroke", "#fff")
+	  .attr("stroke-width", "1")
+      .on("mouseover", function(d) {        
+
+	      d3.select(this).transition()
+			   		.duration(250)
+					.attr("stroke", "#555555")
+					.attr("stroke-width", "1");
+       })
+       .on("mouseout", function() {
+
+          d3.select(this).transition()
+			   		.duration(250)
+					.attr("stroke", "#fff")
+					.attr("stroke-width", "1");
+       });
+
+  g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.name); });
+
+  g.append("rect")
+  	  .attr('x', radius + 20)
+  	  .attr('y', function(d, x){
+  	  	return (-radius + 20) + x*30;
+  	  })
+  	  .attr('width', 20)
+  	  .attr('height', 20)
+  	  .attr('fill', function(d){
+  	  	 return color(d.data.name); 
+  	  });
+
+  g.append("text")
+      .attr('x', radius + 20 + 20 + 5)
+      .attr('y', function(d, x){
+  	  	return (-radius + 20) + x*30 + 16;
+  	  })
+  	  .attr('font-size', 16)
+  	  .attr('stroke', function(d){
+  	  	 return color(d.data.name); 
+  	  })
+      .text(function(d) { return d.data.name; });
+}
+
+	</script>
+</html>
