@@ -1,0 +1,11 @@
+{
+  "name": "multi transclude",
+  "description": "multi transclude example",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.x",
+    "jquery": ">=1.10.2",
+    "bootstrap": "~3.1.1"
+  }
+}
