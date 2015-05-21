@@ -22,20 +22,25 @@
         .body {
             background: #bbb;
         }
+
+        .active {
+            background: #eee;
+        }
     </style>
 </head>
 
-<body ng-app="test">
+<body ng-app="test" class="container-fluid" ng-controller="AppController">
+    <ot-site>
+        <ot-list items="area.list" selected="area.current" transclude-to="site-header">
+        </ot-list>
+   </ot-site>
    <ot-site>
-        <div transclude-to="site-header">
-            I am transcluding the header
-        </div>
-        <div transclude-to="site-menu">
-            I am transcluding the menu
-        </div>
-        <div transclude-to="site-body">
-            I am transcluding the body
-        </div>
+        <ot-list items="area.list" selected="area.current" transclude-to="site-menu">
+        </ot-list>
+   </ot-site>
+    <ot-site>
+        <ot-list items="app.list" selected="app.current" transclude-to="site-body">
+        </ot-list>
    </ot-site>
 </body>
 <script type="text/javascript">
@@ -133,6 +138,49 @@
             link: function($scope, iElm, iAttrs, controller, transclude) {
                MultiTransclude.transclude(iElm, transclude);
             }
+        };
+    }])
+    .directive('otList', () => {
+        // Runs during compile
+        return {
+            scope: {
+                items: "=",
+                selected: "="
+            }, 
+            restrict: 'E',
+            template: `<ul class="nav nav-justified">
+                        <li ng-repeat="item in items" 
+                            ng-class="{'active': item === selected}"
+                            ng-click="selectItem(item)">
+                            <a href="#" ng-bind="item"></a>
+                        </li>
+                       </ul>`,
+            replace: true,
+            link: ($scope, iElm, iAttrs, controller) => {
+                $scope.selectItem = function(item){
+                    $scope.selected = item;
+                }
+            }
+        };
+    }).controller('AppController', ['$scope', ($scope) => {
+        $scope.area = {
+            list: [
+                "Configs",
+                "Services",
+                "Controllers",
+                "Directives"
+            ],
+            current: 'Configs'
+        };
+
+        $scope.app = {
+            list: [
+                "Configs",
+                "Services",
+                "Controllers",
+                "Directives"
+            ],
+            current: 'Configs'
         };
     }]);
 </script>
