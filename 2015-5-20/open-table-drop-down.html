@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>open table multi transclude</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+    <style type="text/css">
+        .header {
+            background: #000;
+        }
+
+        .menu {
+            background: #777;
+        }
+
+        .body {
+            background: #bbb;
+        }
+
+        .active {
+            background: #eee;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body ng-app="test" class="container-fluid" ng-controller="AppController">
+    <ot-site>
+        <ot-dropdown transclude-to="site-header">
+            <ot-trigger>
+                <button type="button" class="btn btn-link">{{app.current}}</button>
+            </ot-trigger>
+            <ot-target>
+                <ot-list items="app.list" selected="app.current" theme="list">
+            </ot-target>
+        </ot-dropdown>
+        <ot-list items="area.list" selected="area.current" theme="nav" transclude-to="site-menu">
+        </ot-list>
+   </ot-site>
+</body>
+<script type="text/javascript">
+    
+    // Use ES6 new feature
+    // ng-transclude can not implement the result that we want. 
+    /*$transclude(function(clone){
+        $element.empty();
+        $element.append(clone);
+    });*/
+    /**
+    * test Module
+    *
+    * Description
+    */
+    /*angular.module('test', []).directive('otSite', () => {
+        // Runs during compile
+        return {
+            scope: {},
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            template: `
+                <div class="row">
+                    <header class="header" ng-transclude></header>
+                    <nav class="menu" ng-transclude></nav>
+                    <main class="body" ng-transclude></main>
+                    <footer class="footer"></footer>
+                </div>
+            `,
+            replace: true,
+            transclude: true,
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
+    });*/
+
+    //Custom transclude
+    //1.Get target ID
+    //2.Find target element by ID
+    //3.Append clone element to target 
+
+   /* 
+    transclude function
+       Two parameters:
+       scope (optional)
+          callback function
+               passes clone
+
+    */
+
+    /*
+    Transclude function access point
+    compile
+    controller 
+    link
+    */
+
+    angular.module('test', []).factory('MultiTransclude', () => {
+        return {
+            transclude: (iElm, transcludeFn) => {
+                transcludeFn((clone) => {
+                    angular.forEach(clone, (cloneEl) => {
+                        if(cloneEl.attributes) {
+                            var tId = cloneEl.attributes["transclude-to"].value;
+                            var target = iElm.find(`[transclude-id="${tId}"]`);
+
+                            if(target.length) {
+                                target.append(cloneEl);
+                            } else {
+                                cloneEl.remove();
+                                throw new Error(`
+                                    Target not found, Please specify the correct transclude-to Attribute
+                                `);
+                            }
+                        }
+                    });
+                });
+            }
+        };
+    })
+    .directive('otSite', ['MultiTransclude', (MultiTransclude) => {
+        // Runs during compile
+        return {
+            scope: {},
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            template: `
+                <div class="container">
+                    <header class="row header" transclude-id="site-header"></header>
+                    <nav class="row menu" transclude-id="site-menu"></nav>
+                    <main class="row body" transclude-id="site-body"></main>
+                    <footer class="row footer"></footer>
+                </div>
+            `,
+            transclude: true,
+            link: function($scope, iElm, iAttrs, controller, transclude) {
+               MultiTransclude.transclude(iElm, transclude);
+            }
+        };
+    }])
+    .directive('otList', () => {
+        // Runs during compile
+        return {
+            scope: {
+                items: "=",
+                selected: "=",
+                theme: "@"
+            }, 
+            restrict: 'E',
+            template: `<ul ng-class="{'nav nav-justified': theme === 'nav', 'list-group': theme === 'list'}">
+                        <li ng-repeat="item in items" 
+                            ng-class="{'active': item === selected, 'list-group-item': theme === 'list'}"
+                            ng-click="selectItem(item)">
+                            <a href="#" ng-bind="item"></a>
+                        </li>
+                       </ul>`,
+            replace: true,
+            link: ($scope, iElm, iAttrs, controller) => {
+                $scope.selectItem = function(item){
+                    $scope.selected = item;
+                }
+            }
+        };
+    }).directive('otDropdown', () => {
+        // Runs during compile
+        return {
+            scope: {}, 
+            restrict: 'E', 
+            template: `<div ng-click="toggleTarget()" ng-transclude>
+            </div>`,
+            transclude: true,
+            controller: function($scope) {
+               this.targetOpen = false;
+               $scope.toggleTarget = () => {
+                    this.targetOpen = !this.targetOpen;
+               } 
+            }
+        };
+    }).directive('otTarget', () => {
+        // Runs during compile
+        return {
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            require: '^otDropdown',
+            template: `
+                <div ng-transclude ng-show="ctrl.targetOpen"></div>
+            `,
+            transclude: true,
+            link: function($scope, iElm, iAttrs, ctrl) {
+                $scope.ctrl = ctrl;
+            }
+        };
+    })
+    .directive('otTrigger', () => {
+        // Runs during compile
+        return {
+            restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+            template: `
+                <div ng-transclude></div>
+            `,
+            transclude: true,
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
+    })
+    .controller('AppController', ['$scope', ($scope) => {
+        $scope.area = {
+            list: [
+                "Configs",
+                "Services",
+                "Controllers",
+                "Directives"
+            ],
+            current: 'Configs'
+        };
+        $scope.app = {
+            list: [
+                "Configs",
+                "Services",
+                "Controllers",
+                "Directives"
+            ],
+            current: 'Configs'
+        };
+    }]);
+</script>
+</html>
