@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alert</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <style type="text/css">
+        .close {
+            float: right;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+            margin-left: 5px;
+            margin-right: 5px;
+            opacity: 0.3;
+            text-shadow: 0 1px 0 #fff;
+        }
+    </style>
+</head>
+
+<body ng-app="test">
+    <div class="container"> 
+        <div class="row" ng-controller="AlertCtrl as AC" ng-show="AC.show">
+            <alert type="{{AC.alert.type}}" close="AC.close()" apply="AC.apply()" discard="AC.discard()">{{AC.alert.msg}}</alert>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+/*
+Use $provide.decorator method to extend directive
+Useful Link:
+http://stackoverflow.com/questions/27637660/angularjs-decorator-binding-new-variables-to-directive
+*/
+
+(function() {
+
+    angular.module('test', ['ui.bootstrap']);
+
+    angular.module('test').controller('ExtendAlertController', ExtendAlertController);
+
+    ExtendAlertController.$inject = ['$scope', '$attrs'];
+    
+    function ExtendAlertController($scope, $attrs) {
+        $scope.closeable = 'close' in $attrs;
+        $scope.applyable = 'apply' in $attrs;
+        $scope.discardable = 'discard' in $attrs;
+
+        this.close = $scope.close;
+    }
+
+    angular.module('test').config(ExtendAlertDirective);
+
+    ExtendAlertDirective.$inject = ['$provide'];
+
+    function ExtendAlertDirective($provide) {
+        $provide.decorator('alertDirective', function($delegate) {
+            var directive = $delegate[0];
+            
+            //works on 1.2 
+            /*angular.extend(directive.scope, {
+                apply: '&',
+                discard: '&'
+            });*/
+
+            //1.3.x bug: https://github.com/angular/angular.js/issues/10149
+            directive.$$isolateBindings.apply = {
+              attrName: 'apply',
+              mode: '&',
+              optional: true
+            };
+
+            directive.$$isolateBindings.discard = {
+              attrName: 'discard',
+              mode: '&',
+              optional: true
+            };
+            
+            directive.templateUrl = "alert_template.html";
+
+            //you can also use function extend, 
+            //here I just replace the old controller method
+            directive.controller = "ExtendAlertController";
+
+            return $delegate;
+        });
+    }
+
+    angular.module('test').controller('AlertCtrl', AlertCtrl);
+
+    function AlertCtrl() {
+       
+        var vm = this;
+
+        vm.show = true; 
+
+        vm.alert = {
+            type: "success",
+            msg: "Well done! You successfully read this important alert message"
+        };   
+
+        vm.close = close;
+        vm.apply = apply;
+        vm.discard = discard;
+      
+        function apply(){
+            vm.show = false; 
+            console.log("apply data");
+        }
+
+        function discard(){
+            vm.show = false; 
+            console.log("discard data");
+        }
+         
+        function close(){
+          vm.show = false;   
+          console.log("just close");
+        }
+    }
+})();
+</script>
+
+</html>
