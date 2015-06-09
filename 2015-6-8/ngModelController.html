@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ngModelController (time transform)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+</head>
+
+<body ng-app="test">
+    <div class="container">
+        <div class="row" ng-controller="timeCtrl as tc">
+            <div class="row">
+                <h2>ngModelController (time transform)</h2>
+            </div>
+            <div class="row">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1">ng-model:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="tc.timeDuration">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <form>
+                    <div class="form-group">
+                <label class="control-label col-sm-1">to:</label>
+                <div class="col-sm-11">
+                    <time-transform ng-model="tc.timeDuration"></time-transform>
+                </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+(function() {
+
+    angular.module('test', []);
+
+    angular.module('test').controller('timeCtrl', timeCtrl);
+
+    function timeCtrl(){
+        var vm = this;
+        vm.timeDuration = "36000";
+    }
+
+    angular.module('test').directive('timeTransform', timeTransformDirective);
+
+    function timeTransformDirective(){
+
+        var tpl = `
+        <div class="form-inline"> 
+          <div class="form-group">
+            <div class="input-group">
+              <input type='text' class="form-control" placeholder="Amount" ng-model='days' />
+              <div class="input-group-addon">Days</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input type='text' class="form-control" placeholder="Amount" ng-model='hours' />
+              <div class="input-group-addon">Hours</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input type='text' class="form-control" placeholder="Amount" ng-model='minutes' />
+              <div class="input-group-addon">Minutes</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <input type='text' class="form-control" placeholder="Amount" ng-model='seconds' />
+              <div class="input-group-addon">Seconds</div>
+            </div>
+          </div>
+        </div>  
+        `
+
+        return {
+            require: 'ngModel', 
+            restrict: 'E', 
+            template: tpl,
+            replace: true,
+            link: function($scope, iElm, iAttrs, ngModelCtrl) {
+                if(ngModelCtrl) {
+                    var multiplierMap = {seconds: 1, minutes: 60, hours: 3600, days: 86400};
+                    var multiplierTypes = ['seconds', 'minutes', 'hours', 'days'];
+
+                    //Model Value -> View Value
+                    ngModelCtrl.$formatters.push(function(modelValue) {
+                        var unit = 'minutes', num = 0, i, unitName;
+
+                        modelValue = parseInt(modelValue || 0);
+
+                        console.log("Model Value: " + modelValue);
+
+                        console.log("Run ngModelCtrl.$formatters");
+
+
+                        var t = modelValue;
+
+                        var d=Math.floor(t/60/60/24);
+                        var h=Math.floor(t/60/60%24);
+                        var m=Math.floor(t/60%60);
+                        var s=Math.floor(t%60);
+
+                        return {
+                            days: d,
+                            hours:  h,
+                            minutes: m,
+                            seconds: s
+                        };
+                    });
+
+                    //View Value -> Model Value
+                    ngModelCtrl.$parsers.push(function(viewValue) {
+
+                        console.log("View Value: " + viewValue);
+
+                        console.log("Run ngModelCtrl.$parsers");
+
+                        return viewValue.days * 60*60*24 + viewValue.hours * 60 * 60 + viewValue.minutes * 60 + viewValue.seconds;
+                    });
+
+                    //UI -> Model
+                    $scope.$watch('days + hours + minutes + seconds', function() {
+
+                        console.log("UI Change");
+
+                        console.log("Run ngModelCtrl.$setViewValue method");
+
+                        ngModelCtrl.$setViewValue({ 
+                            days: $scope.days,
+                            hours: $scope.hours,
+                            minutes: $scope.minutes,
+                            seconds: $scope.seconds
+                        });
+                    });
+
+                    //Model -> UI
+                    ngModelCtrl.$render = function() {
+
+                        console.log("Run ngModelCtrl.$render method");
+
+                        if (!ngModelCtrl.$viewValue) {
+                            ngModelCtrl.$viewValue = { 
+                                days: 0,
+                                hours: 0,
+                                minutes: 0,
+                                seconds: 0
+                            };
+                        }
+
+                        $scope.days = ngModelCtrl.$viewValue.days;
+                        $scope.hours = ngModelCtrl.$viewValue.hours;
+                        $scope.minutes = ngModelCtrl.$viewValue.minutes;
+                        $scope.seconds = ngModelCtrl.$viewValue.seconds;
+                    };
+                }
+            }
+        };
+    }
+
+})();
+</script>
+
+</html>
