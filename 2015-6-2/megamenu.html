@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mega menu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="megamenu.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+</head>
+<body ng-app="test">
+	<nav class="navbar yamm navbar-default" role="navigation">
+		<div class="container-fuild">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Title</a>
+			</div>
+		
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Link</a></li>
+					<li class="dropdown" dropdown>
+						<a href="#" class="dropdown-toggle" dropdown-toggle>Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav">
+			        <li class="dropdown" dropdown>
+			            <a href="#" class="dropdown-toggle" dropdown-toggle event-toggle="mouseover">Dropdown <b class="caret"></b></a>
+			            <ul class="dropdown-menu">
+			                <li>
+			                    <div class="yamm-content">
+			                       <div class="row">
+				                      <ul class="col-sm-3 list-unstyled">
+				                        <li>
+				                          <p><strong>Section Title</strong></p>
+				                        </li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                      </ul>
+				                      <ul class="col-sm-3 list-unstyled">
+				                        <li>
+				                          <p><strong>Links Title</strong></p>
+				                        </li>
+				                        <li><a href="#"> Link Item </a></li>
+				                        <li><a href="#"> Link Item </a></li>
+				                        <li><a href="#"> Link Item </a></li>
+				                        <li><a href="#"> Link Item </a></li>
+				                        <li><a href="#"> Link Item </a></li>
+				                        <li><a href="#"> Link Item </a></li>
+				                      </ul>
+				                      <ul class="col-sm-3 list-unstyled">
+				                        <li>
+				                          <p><strong>Section Title</strong></p>
+				                        </li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                      </ul>
+				                      <ul class="col-sm-3 list-unstyled">
+				                        <li>
+				                          <p><strong>Section Title</strong></p>
+				                        </li>
+				                        <li>List Item</li>
+				                        <li>List Item</li>
+				                        <li>
+				                          <ul>
+				                            <li><a href="#"> Link Item </a></li>
+				                            <li><a href="#"> Link Item </a></li>
+				                            <li><a href="#"> Link Item </a></li>
+				                          </ul>
+				                        </li>
+				                      </ul>
+				                    </div>
+			                    </div>
+			                </li>
+			            </ul>
+			        </li>
+			        <li class="dropdown" dropdown><a class="dropdown-toggle" dropdown-toggle event-toggle="mouseover" href="#" aria-expanded="true">Forms<b class="caret"></b></a>
+			            <ul class="dropdown-menu">
+			                  <li>
+			                    <div class="yamm-content">
+			                      <form action="send.php">
+			                        <div class="form-group">
+			                          <input type="text" class="form-control" placeholder="Name" id="inputName">
+			                        </div>
+			                        <div class="form-group">
+			                          <input type="password" class="form-control" placeholder="Email" id="inputEmail">
+			                        </div>
+			                        <div class="form-group">
+			                          <textarea class="form-control" placeholder="Write your message.."></textarea>
+			                        </div>
+			                        <div class="form-group">
+			                          <button class="btn btn-success" type="submit">Send</button>
+			                        </div>
+			                      </form>
+			                    </div>
+			                  </li>
+			            </ul>
+			        </li>
+    			</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>	
+</body>
+<script type="text/javascript">
+	(function() {
+	    'use strict';
+	    angular.module("test", ["ui.bootstrap"]);
+
+	    angular.module('test').config(ExtendDropdownToggleDirective);
+
+    	ExtendDropdownToggleDirective.$inject = ['$provide'];
+
+    	function ExtendDropdownToggleDirective($provide) {
+
+    		var eventToggle = "click";
+
+	        $provide.decorator('dropdownToggleDirective', ["$delegate", "$document", function($delegate, $document) {
+
+	            var directive = $delegate[0];
+
+	            var link = directive.link;
+
+			    directive.compile = function() {
+			      return function(scope, element, attrs, dropdownCtrl) {
+			      	  eventToggle = attrs.eventToggle;
+			      	  if(attrs.eventToggle !== "mouseover"){
+			          	link.apply(this, [scope, element, attrs, dropdownCtrl]);
+			      	  } else {
+						  if ( !dropdownCtrl ) {
+					        return;
+					      }
+
+					      dropdownCtrl.toggleElement = element;
+
+					      var toggleDropdown = function(evt) {
+					        evt.preventDefault();
+							
+							if ( evt && element && element[0].parentElement.contains(evt.target) && dropdownCtrl.isOpen() ) {
+							   return;
+							}
+
+					        if ( !element.hasClass('disabled') && !attrs.disabled ) {
+					          scope.$apply(function() {
+					            dropdownCtrl.toggle();
+					          });
+					        }
+					      };
+
+					      element.bind('mouseover', toggleDropdown);
+
+					      // WAI-ARIA
+					      element.attr({ 'aria-haspopup': true, 'aria-expanded': false });
+					      scope.$watch(dropdownCtrl.isOpen, function( isOpen ) {
+					        element.attr('aria-expanded', !!isOpen);
+					      });
+
+					      scope.$on('$destroy', function() {
+					        element.unbind('mouseover', toggleDropdown);
+					      });
+				      }
+			      };
+			    };
+
+	            return $delegate;
+	        }]);
+
+			$provide.decorator('dropdownService', ['$delegate', '$document', '$rootScope', function ($delegate, $document, $rootScope) {
+				var openBackup = $delegate.open;
+				var closeBackup = $delegate.close;
+
+                //override open method
+			    $delegate.open = function () {
+			      if(eventToggle !== 'mouseover'){
+			      	openBackup.apply($delegate, arguments);
+			      }else{
+			      	open.apply($delegate, arguments);
+			      }
+			    };
+
+			    //override close method
+			    $delegate.close = function () {
+			       if(eventToggle !== 'mouseover'){
+			      	closeBackup.apply($delegate, arguments);
+			      }else{
+			      	close.apply($delegate, arguments);
+			      }
+			    };
+
+
+			    var openScope = null;
+
+			    var open = function( dropdownScope ) {
+
+			    	var toggleElement = dropdownScope.getToggleElement();
+			    	var eventToggle = toggleElement.attr("event-toggle");
+
+				    if ( !openScope ) {
+				      if(eventToggle == 'mouseover'){
+				      	$document.bind('mouseover', closeDropdown);
+				      } else{	
+				      	$document.bind('click', closeDropdown);
+				      	$document.bind('keydown', keybindFilter);
+				      }
+				    }
+
+				    if ( openScope && openScope !== dropdownScope ) {
+				      openScope.isOpen = false;
+				    }
+
+				    openScope = dropdownScope;
+				};
+
+			  	var close = function( dropdownScope ) {
+			  		var toggleElement = dropdownScope.getToggleElement();
+			    	var eventToggle = toggleElement.attr("event-toggle");
+
+				    if ( openScope === dropdownScope ) {
+				      openScope = null;
+				      if(eventToggle == 'mouseover'){
+				      	$document.unbind('mouseover', closeDropdown);
+				      } else{		
+				      	$document.unbind('click', closeDropdown);
+				      	$document.unbind('keydown', keybindFilter);
+				      }
+				    }
+			  	};
+
+			    var closeDropdown = function( evt ) {
+				    // This method may still be called during the same mouse event that
+				    // unbound this event handler. So check openScope before proceeding.
+				    if (!openScope) { return; }
+
+				    if( evt && openScope.getAutoClose() === 'disabled' )  { return ; }
+
+				    var toggleElement = openScope.getToggleElement();
+				    if ( evt && toggleElement && toggleElement[0].parentElement.contains(evt.target) ) {
+				      return;
+				    }
+
+				    var $element = openScope.getElement();
+				    if( evt && openScope.getAutoClose() === 'outsideClick' && $element && $element[0].contains(evt.target) ) {
+				      return;
+				    }
+
+				    openScope.isOpen = false;
+
+				    if (!$rootScope.$$phase) {
+				      openScope.$apply();
+				    }
+			    };
+
+			    var keybindFilter = function( evt ) {
+				    if ( evt.which === 27 ) {
+				      openScope.focusToggleElement();
+				      closeDropdown();
+				    }
+				    else if ( openScope.isKeynavEnabled() && /(38|40)/.test(evt.which) && openScope.isOpen ) {
+				      evt.preventDefault();
+				      evt.stopPropagation();
+				      openScope.focusDropdownEntry(evt.which);
+				    }
+				};
+
+				return $delegate;
+			}]);
+    	}
+
+	})();
+</script>
+</html>
