@@ -6,10 +6,14 @@ var rename = require("gulp-rename");
 var eventStream = require('event-stream');
 var browserSync = require("browser-sync");
 var clean = require("gulp-clean");
+var autoprefixer = require("gulp-autoprefixer");
+var taskListing = require("gulp-task-listing");
 
 var path = "bower_components/bootstrap/";
 var lessPath = "bower_components/bootstrap/less/";
 var dest = "build/bower_components/bootstrap/dist/";
+
+gulp.task("help", taskListing);
 
 gulp.task("copyJSandFonts", function(){
   gulp.src( path + "dist/js/**/*")
@@ -28,6 +32,7 @@ gulp.task("lessForBootstrap", function(){
   return gulp.src(lessPath + "bootstrap.less")
      .pipe(sourcemaps.init())
      .pipe(less())
+     .pipe(autoprefixer())
      .pipe(gulp.dest(dest + "css"))
      .pipe(sourcemaps.write("./"))
      .pipe(gulp.dest(dest + "css"))
@@ -38,6 +43,7 @@ gulp.task("lessForTheme", function(){
    return gulp.src(lessPath + "theme.less")
      .pipe(sourcemaps.init())
      .pipe(less())
+     .pipe(autoprefixer())
      .pipe(rename("bootstrap-theme.css"))
      .pipe(gulp.dest(dest + "css"))
      .pipe(sourcemaps.write("./"))
@@ -81,5 +87,5 @@ gulp.task("clean", function(){
    gulp.src("./build", {read:false}).pipe(clean());
 });
 
-gulp.task("default", ['copyJSandFonts', 'copyExample', 'less', "browserSync", "watchFiles", "mini"]);
+gulp.task("default", ['copyJSandFonts', 'copyExample', 'less', 'mini', "browserSync", "watchFiles"]);
 
