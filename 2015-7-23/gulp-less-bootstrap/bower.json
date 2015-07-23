@@ -1,0 +1,18 @@
+{
+  "name": "gulp-less-bootstrap",
+  "version": "0.0.0",
+  "authors": [
+    "hjzheng <zhenghaoju700@163.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
