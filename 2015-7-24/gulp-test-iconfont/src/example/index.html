@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>icon font example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/_icons.css">
+</head>
+
+<body>
+    <h2>Icon Example</h2>
+    <% _.each(icons, function(icon) { %>
+       <%= icon %>
+       <span class="icon icon-<%= icon %>"></span>
+    <% }); %>    
+</body>
+</html>
