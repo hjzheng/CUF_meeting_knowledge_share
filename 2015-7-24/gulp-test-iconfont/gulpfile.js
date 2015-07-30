@@ -24,7 +24,9 @@ gulp.task('iconfont', ['clean'], function(){
       fontPath: '../fonts/'
     }))
     .pipe(iconfont({
-      fontName: fontName
+      fontName: fontName,
+      formats: ['svg', 'ttf', 'eot', 'woff', 'woff2'],
+      normalize: true
      }))
     .pipe(gulp.dest('build/fonts/'));
 });

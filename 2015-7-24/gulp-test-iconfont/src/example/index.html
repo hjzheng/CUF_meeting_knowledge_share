@@ -3,16 +3,56 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>icon font example</title>
+    <title>icon font test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/_icons.css">
+    <style>
+        .icon_lists li{
+          float:left;
+          width: 100px;
+          height:150px;
+          text-align: center;
+          list-style: none;
+        }
+        .icon_lists .icon{
+          font-size: 42px;
+          margin: 10px 0;
+          color:#333;
+          -webkit-transition: font-size 0.25s ease-out 0s;
+          -moz-transition: font-size 0.25s ease-out 0s;
+          transition: font-size 0.25s ease-out 0s;
+
+        }
+        .icon_lists .icon:hover{
+          font-size: 100px;
+        }
+        .name {
+          font-size: 16px;
+        }
+
+        .clear:after {
+          content: '\20';
+          display: block;
+          height: 0;
+          clear: both;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Icon Example</h2>
+    <h2>Icon Font</h2>
+    <ul class="icon_lists clear">
     <% _.each(icons, function(icon) { %>
-       <%= icon %>
-       <span class="icon icon-<%= icon %>"></span>
-    <% }); %>    
+       <li class="icon icon-<%= icon %>">
+          <div class="name"><%= icon%></div>
+       </li>
+    <% }); %>
+    </ul>
+   <div>
+     <h2>Use Icon Font</h2>
+     <pre>
+      &lt;span class=&quot;icon icon-add&quot;&gt;&lt;/span&gt;
+     </pre> 
+   </div>    
 </body>
 </html>
