@@ -22,3 +22,4 @@ nodejs调试工具
    #nodejs后台运行
    forever  ./bin/www
 ```
+- forever 替代品 [PM2](https://github.com/Unitech/PM2) 强烈建议使用
