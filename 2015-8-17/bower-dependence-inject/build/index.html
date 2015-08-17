@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dependence Inject</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap bug for wiredep https://github.com/twbs/bootstrap/issues/16663-->
+    
+    <!-- build:css css/all.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/all.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- endbower -->
+
+    <!-- inject:js -->
+    <script src="/src/app/app.module.js"></script>
+    <script src="/src/app/example/example.module.js"></script>
+    <script src="/src/app/example/example.controller.js"></script>
+    <script src="/src/app/example/example.router.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body>
+    <div class="container"> 
+       <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                   <h2>Bower Dependence Injcet</h2>
+                </div>
+                <div class="row">
+                   <h2>Your Source Inject</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

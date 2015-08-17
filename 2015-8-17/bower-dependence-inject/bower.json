@@ -1,0 +1,27 @@
+{
+  "name": "bower-dependence-inject",
+  "version": "0.0.0",
+  "authors": [
+    "hjzheng <hjzheng@cn.ibm.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular": "~1.4.4",
+    "angular-bootstrap": "~0.13.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": "dist/css/bootstrap.css",
+      "dist": "dist/js/bootstrap.js"
+    }
+  }
+}
