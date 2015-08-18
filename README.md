@@ -10,6 +10,9 @@ CUF_meeting_knowledge_share
 由于[issue][6]是通过[markdown][0]方式书写，如果对markdown不熟悉的同学，可以使用[stackedit.io][1]在线编辑再粘贴。
 项目中对应的日期文件夹，可以放置Example，文档或其他你想放置的东西。(更多[markdown资源][5])
 
+##### PPTs
+如果分享含有PPT，请将它存放于[CUF_PPTs](https://github.com/hjzheng/CUF_PPTs)项目。
+
 ##### CUF团队成员:
 - [Chun Lin Yang][4]
 - [Zhen Ou Yun][2]
