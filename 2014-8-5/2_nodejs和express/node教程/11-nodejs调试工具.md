@@ -23,3 +23,7 @@ nodejs调试工具
    forever  ./bin/www
 ```
 - forever 替代品 [PM2](https://github.com/Unitech/PM2) 强烈建议使用
+
+```shell
+  pm2 start ./bin/www
+```
