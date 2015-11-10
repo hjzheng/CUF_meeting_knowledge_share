@@ -1,0 +1,21 @@
+{
+  "name": "2015-11-10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-if": "^2.0.0",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-print": "^2.0.1",
+    "gulp-util": "^3.0.7",
+    "jshint-stylish": "^2.0.1",
+    "yargs": "^3.29.0"
+  }
+}
