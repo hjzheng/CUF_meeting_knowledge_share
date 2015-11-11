@@ -1,0 +1,28 @@
+{
+  "name": "2015-11-10",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "hjzheng <zhenghaoju700@163.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/hjzheng/CUF_meeting_knowledge_share",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap": "~0.14.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": ["dist/css/bootstrap.css"]
+    }
+  }
+}

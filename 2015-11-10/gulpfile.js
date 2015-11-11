@@ -44,6 +44,28 @@ gulp.task('less-watcher', function(){
     gulp.watch([config.less], ['style']);
 });
 
+
+gulp.task('wiredep', function(){
+
+    log('Write up bower css js and our app js into html');
+
+    var options = config.getWiredepDefaultOptions();
+    var wiredep = require('wiredep').stream;
+    
+    return gulp.src(config.index)
+        .pipe(wiredep(options))
+        .pipe($.inject(gulp.src(config.js)))
+        .pipe(gulp.dest(config.src));
+});
+
+gulp.task('inject', ['style', 'wiredep'], function(){
+    log('Write up app css into html and call wiredep');
+
+    return gulp.src(config.index)
+        .pipe($.inject(gulp.src(config.css)))
+        .pipe(gulp.dest(config.src));
+});
+
 ////////
 
 //use gulp-plumber to repalce the error handle function
