@@ -66,6 +66,38 @@ gulp.task('inject', ['style', 'wiredep'], function(){
         .pipe(gulp.dest(config.src));
 });
 
+// gulp.task('serve-dev', ['inject'], function(){
+
+//     /*
+//        config.nodeServer : express app.js
+//        config.server: express dir
+//     */
+
+//     var isDev = true;
+//     var nodeOptions = {
+//         script: 'config.nodeServer',
+//         env: {
+//             'PORT': port,
+//             'NODE_ENV': isDev ? 'dev' : 'build'
+//         },
+//         watch: [config.server]
+//     }
+
+//     return $.nodemon(nodeOptions)
+//         .on('restart', ['vet'], function(){
+//             log('server restart');
+//         })
+//         .on('start',function(){
+//             log('server start');
+//         })
+//         .on('crash', function(){
+//             log('server crash');
+//         })
+//         .on('exit', function(){
+//             log('server exit');
+//         });
+// });
+
 ////////
 
 //use gulp-plumber to repalce the error handle function
