@@ -11,7 +11,9 @@ module.exports = function(){
 		js: src + 'app/**/*.js',
 		css: temp + '**/*.css',
 		src: src,
-		build: './build',
+		build: './build/',
+		fonts: './bower_components/bootstrap/fonts/**/*',
+		images: src + "images/**/*",
 
 		bower: {
 			json: require('./bower.json'),

@@ -10,6 +10,28 @@ var config = require('./gulp.config')();
 // var gulpIf = require('gulp-if');
 // var gulpPrint = require('gulp-print');
 
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
+
+gulp.task('fonts', ['clean-fonts'], function(){
+
+    log('copy fonts');
+
+    gulp.src(config.fonts)
+        .pipe(gulp.dest(config.build + "fonts"));
+});
+
+gulp.task('images', ['clean-images'], function(){
+    
+    log('copy images');
+
+    gulp.src(config.images)
+        .pipe($.imagemin({optimizationLevel: 3}))
+        .pipe(gulp.dest(config.build + "images"));
+
+});
+
+
 gulp.task('vet', function(){
 
 	log('Analyzing source with jshint and jscs');
@@ -36,7 +58,17 @@ gulp.task('style', ['clean-style'], function(){
 });
 
 gulp.task('clean-style', function(){
-    var files = config.temp + '**/*.css';
+    var files = config.temp + '**/*';
+    clean(files);
+});
+
+gulp.task('clean-fonts', function(){
+    var files = config.build + 'fonts/**/*';
+    clean(files);
+});
+
+gulp.task('clean-images', function(){
+    var files = config.build + 'images/**/*';
     clean(files);
 });
 
