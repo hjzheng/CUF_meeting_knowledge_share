@@ -31,6 +31,14 @@ gulp.task('images', ['clean-images'], function(){
 
 });
 
+gulp.task('optimazed', ['inject'], function(){
+    log('optimazed the code');
+
+    gulp.src(config.index)
+        .pipe($.useref())
+        .pipe(gulp.dest(config.build));
+});
+
 
 gulp.task('vet', function(){
 
@@ -86,7 +94,7 @@ gulp.task('wiredep', function(){
     
     return gulp.src(config.index)
         .pipe(wiredep(options))
-        .pipe($.inject(gulp.src(config.js)))
+        .pipe($.inject(gulp.src(config.js), {relative: true}))
         .pipe(gulp.dest(config.src));
 });
 
@@ -94,7 +102,7 @@ gulp.task('inject', ['style', 'wiredep'], function(){
     log('Write up app css into html and call wiredep');
 
     return gulp.src(config.index)
-        .pipe($.inject(gulp.src(config.css)))
+        .pipe($.inject(gulp.src(config.css),{relative: true}))
         .pipe(gulp.dest(config.src));
 });
 

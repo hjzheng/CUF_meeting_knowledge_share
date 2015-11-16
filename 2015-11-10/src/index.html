@@ -3,24 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Just a Test</title>
+	<!-- build:css css/lib.css -->
 	<!-- bower:css -->
 	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
 	<!-- endbower -->
+	<!-- endbuild -->
 
+	<!-- build:css css/app.css -->
 	<!-- inject:css -->
-	<link rel="stylesheet" href="/.temp/styles.css">
+	<link rel="stylesheet" href="../.temp/styles.css">
 	<!-- endinject -->
+	<!-- endbuild -->
+
 </head>
 <body>
+    <!-- build:js js/lib.js -->
 	<!-- bower:js -->
 	<script src="../bower_components/jquery/dist/jquery.js"></script>
 	<script src="../bower_components/angular/angular.js"></script>
 	<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 	<!-- endbower -->
+	<!-- endbuild -->
 
+	<!-- build:js js/app.js -->
 	<!-- inject:js -->
-	<script src="/src/app/foo.js"></script>
-	<script src="/src/app/test.js"></script>
+	<script src="app/foo.js"></script>
+	<script src="app/test.js"></script>
 	<!-- endinject -->
+	<!-- endbuild -->
 </body>
 </html>

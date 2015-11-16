@@ -23,6 +23,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-print": "^2.0.1",
     "gulp-task-listing": "^1.0.1",
+    "gulp-useref": "^3.0.0",
     "gulp-util": "^3.0.7",
     "jshint-stylish": "^2.0.1",
     "wiredep": "^2.2.2",
