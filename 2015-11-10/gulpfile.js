@@ -36,6 +36,8 @@ gulp.task('optimazed', ['inject'], function(){
 
     gulp.src(config.index)
         .pipe($.useref())
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.csso()))
         .pipe(gulp.dest(config.build));
 });
 
