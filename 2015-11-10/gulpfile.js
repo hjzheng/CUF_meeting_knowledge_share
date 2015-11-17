@@ -34,10 +34,19 @@ gulp.task('images', ['clean-images'], function(){
 gulp.task('optimazed', ['inject'], function(){
     log('optimazed the code');
 
+    var cssFilter = $.filter('**/*.css', {restore: true});
+    var jsFilter = $.filter('**/*.js', {restore: true});
+
     gulp.src(config.index)
         .pipe($.useref())
-        .pipe($.if('*.js', $.uglify()))
-        .pipe($.if('*.css', $.csso()))
+        .pipe(jsFilter)
+        .pipe($.uglify())
+        .pipe(jsFilter.restore)
+        .pipe(cssFilter)
+        .pipe($.csso())
+        .pipe(cssFilter.restore)
+        // .pipe($.if('*.js', $.uglify()))
+        // .pipe($.if('*.css', $.csso()))
         .pipe(gulp.dest(config.build));
 });
 
