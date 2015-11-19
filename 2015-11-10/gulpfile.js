@@ -41,12 +41,17 @@ gulp.task('optimazed', ['inject'], function(){
         .pipe($.useref())
         .pipe(jsFilter)
         .pipe($.uglify())
+        .pipe($.rev())
         .pipe(jsFilter.restore)
         .pipe(cssFilter)
         .pipe($.csso())
+        .pipe($.rev())
         .pipe(cssFilter.restore)
+        .pipe($.revReplace())
         // .pipe($.if('*.js', $.uglify()))
         // .pipe($.if('*.css', $.csso()))
+        .pipe(gulp.dest(config.build))
+        .pipe($.rev.manifest())
         .pipe(gulp.dest(config.build));
 });
 
@@ -88,6 +93,14 @@ gulp.task('clean-fonts', function(){
 
 gulp.task('clean-images', function(){
     var files = config.build + 'images/**/*';
+    clean(files);
+});
+
+gulp.task('clean-code', function(){
+    var files = [].concat(
+        config.build + '**/*.js', 
+        config.build + '**/*.css',
+        config.build + '**/*.html')
     clean(files);
 });
 
