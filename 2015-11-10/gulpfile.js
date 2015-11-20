@@ -162,7 +162,7 @@ gulp.task('inject', ['style', 'wiredep'], function(){
 //         });
 // });
 
-////////
+/////////////////
 
 //use gulp-plumber to repalce the error handle function
 // function errorLogger(error) {
